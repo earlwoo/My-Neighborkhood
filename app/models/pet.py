@@ -16,12 +16,12 @@ class Pet(db.Model):
     owner = db.relationship("User", back_populates="pet")
 
     def to_dict(self):
-    return {
-      "id": self.id,
-      "owner_id": self.owner_id
-      "name": self.name,
-      "image": self.image,
-      "bio": self.bio
-      "age": self.age
-      "bio": self.bio
-    }
+        return {
+        "id": self.id,
+        "owner_id": self.owner_id,
+        "name": self.name,
+        "image": self.image,
+        "bio": self.bio,
+        "age": self.age,
+        "bio": self.bio
+        }

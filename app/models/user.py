@@ -2,7 +2,7 @@ import datetime
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .user_chats import user_chats
+from .user_chat import user_chats
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -10,7 +10,7 @@ class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key = True, nullable = False)
   firstname = db.Column(db.String(50), nullable = False)
   lastname = db.Column(db.String(50), nullable = False)
-  address = db.Column(db.String(255, nullable = False, unique = True))
+  address = db.Column(db.String(255), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
   avatar = db.Column(db.String(360))
@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
 
   pet = db.relationship(
         "Pet", uselist=False,
-        back_populates="user"
+        back_populates="owner"
   )
 
   chats = db.relationship(
@@ -51,7 +51,7 @@ class User(db.Model, UserMixin):
       "id": self.id,
       "firstname": self.firstname,
       "lastname": self.lastname,
-      "email": self.email
-      "avatar": self.avatar
+      "email": self.email,
+      "avatar": self.avatar,
       "bio": self.bio
     }
