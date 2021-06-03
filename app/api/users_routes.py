@@ -11,10 +11,8 @@ def get_users():
     users_dict = [user.to_dict() for user in users]
 
     curr_user = current_user.to_dict()
-    # print("!!!!!!!!", curr_user['address']['zip'])
 
     local_users = [user for user in users_dict if user['address']['zip'] == curr_user['address']['zip']]
     local_users = { user['id']: user for user in local_users }
 
     return local_users
-

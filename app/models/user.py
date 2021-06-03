@@ -54,5 +54,6 @@ class User(db.Model, UserMixin):
             "email": self.email,
             "avatar": self.avatar,
             "address": json.loads(self.address),
-            "bio": self.bio
+            "bio": self.bio,
+            "chats": {chat.id: chat.to_dict() for chat in self.chats}
         }

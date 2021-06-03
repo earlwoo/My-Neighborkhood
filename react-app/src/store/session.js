@@ -68,7 +68,7 @@ export const authenticate = () => async (dispatch) => {
   };
 
 
-  export const signUp = (firstname, lastname, email, password, street, city, state, zip) => async (dispatch)  => {
+  export const signUp = (firstname, lastname, email, password, street, city, state, zip, age, name) => async (dispatch)  => {
     const response = await fetch("/api/auth/signup", {
       method: "POST",
       headers: {
@@ -79,24 +79,25 @@ export const authenticate = () => async (dispatch) => {
         lastname,
         email,
         password,
-        street, city, state, zip
+        street, city, state, zip,
+        age,
+        name
       }),
     });
 
     try{
       if(!response.ok) throw response;
       const data = await response.json();
-      console.log(data)
+
       if (data.errors) {
         return data;
-    }
+      }
+      dispatch(setUser(data))
+      return data;
 
-    dispatch(setUser(data))
-    return data;
     } catch(err){
       console.log(err)
     }
-
   }
 
 export default function reducer(state=initialState, action) {

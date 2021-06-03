@@ -8,7 +8,7 @@ class Pet(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     name = db.Column(db.String(50), nullable = False)
     image = db.Column(db.String(360))
-    bio = db.Column(db.Text, nullable = False)
+    bio = db.Column(db.Text, nullable = False, default="Please Fill Me Out")
     age = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, nullable = False, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, nullable = False, default=datetime.datetime.now())

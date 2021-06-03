@@ -14,6 +14,8 @@ const SignUpForm = ({setShowSUModal}) => {
   const [zip, setZip] = useState("")
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
   const [errors, setErrors] = useState([])
 
   const user = useSelector(state => state.session.user);
@@ -22,7 +24,11 @@ const SignUpForm = ({setShowSUModal}) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
-      const data = await dispatch(signUp(firstname, lastname, email, password, street, city, state, zip));
+      const data = await dispatch(signUp(firstname, lastname, email, password, street, city, state, zip, age, name));
+
+      // if (data.errors) {
+      //   setErrors(data.errors)
+      // }
     }
   };
 
@@ -139,6 +145,28 @@ const SignUpForm = ({setShowSUModal}) => {
             autoComplete="off"
           ></input>
         </div>
+        <div className="signup__input">
+          <input
+            type="text"
+            placeholder="Pet's name"
+            name="name"
+            onChange={e => setName(e.target.value)}
+            value={name}
+            required
+            autoComplete="off"
+          ></input>
+        </div>
+        <div className="signup__input">
+          <input
+            type="text"
+            placeholder="Pet's age"
+            name="age"
+            onChange={e => setAge(e.target.value)}
+            value={age}
+            required
+            autoComplete="off"
+          ></input>
+        </div>
         <div className="signup__button">
           <button style={{ cursor: 'pointer' }} type="submit">Sign Up</button>
         </div>
@@ -148,6 +176,7 @@ const SignUpForm = ({setShowSUModal}) => {
         </div>
       </form>
     </div>
+
   );
 };
 
