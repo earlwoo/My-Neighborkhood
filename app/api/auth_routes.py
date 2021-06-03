@@ -3,6 +3,7 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+import json
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -34,7 +35,6 @@ def login():
     Logs a user in
     """
     form = LoginForm()
-    print(request.get_json())
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -64,9 +64,16 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User(
-            username=form.data['username'],
+            firstname=form.data['firstname'],
+            lastname=form.data['firstname'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            address=json.dumps({
+                "street": form.data['street'],
+                "city": form.data['city'],
+                "state": form.data['state'],
+                "zip": form.data['zip']
+            }),
         )
         db.session.add(user)
         db.session.commit()

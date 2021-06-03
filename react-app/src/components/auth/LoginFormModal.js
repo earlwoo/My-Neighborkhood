@@ -4,14 +4,14 @@ import LoginForm from './LoginForm';
 // import "./LoginForm.css"
 
 function LoginFormModal() {
-  const [showModal, setShowModal] = useState(false);
+  const [showLIModal, setShowLIModal] = useState(false);
 
   return (
     <>
-      <button className="login__btn" onClick={() => setShowModal(true)}>Log In</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <LoginForm setShowModal={setShowModal}/>
+      <button className="login__btn" onClick={() => setShowLIModal(true)}>Log In</button>
+      {showLIModal && (
+        <Modal onClose={() => setShowLIModal(false)}>
+          <LoginForm setShowLIModal={setShowLIModal}/>
         </Modal>
       )}
     </>

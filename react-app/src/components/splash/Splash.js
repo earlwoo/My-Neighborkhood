@@ -14,7 +14,7 @@ const Splash = () => {
 
     return (
         <div>
-            hello!
+            Splash Page
         </div>
     )
 }

@@ -9,6 +9,26 @@ import { useSelector } from 'react-redux';
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
 
+  const noUser = () => {
+    return (
+      <>
+        <span>
+          <LoginFormModal />
+        </span>
+        <span>
+          <SignUpFormModal />
+        </span>
+      </>
+    )
+  }
+
+  const loggedIn = () => {
+    return (
+      <span>
+        <LogoutButton />
+      </span>
+    )
+  }
 
   return (
     <nav className="navbar-container">
@@ -17,19 +37,11 @@ const NavBar = () => {
           Home
         </NavLink>
       </span>
-      <span>
-        <LoginFormModal />
-      </span>
-      <span>
-        <SignUpFormModal />
-      </span>
+      {user ? loggedIn() : noUser()}
       <span>
         <NavLink to="/users" exact={true} activeClassName="active">
           Users
         </NavLink>
-      </span>
-      <span>
-        <LogoutButton />
       </span>
     </nav>
   );
