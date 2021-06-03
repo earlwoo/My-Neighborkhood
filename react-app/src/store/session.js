@@ -82,13 +82,21 @@ export const authenticate = () => async (dispatch) => {
         street, city, state, zip
       }),
     });
-    const data = await response.json();
-    if (data.errors) {
+
+    try{
+      if(!response.ok) throw response;
+      const data = await response.json();
+      console.log(data)
+      if (data.errors) {
         return data;
     }
 
     dispatch(setUser(data))
-    return {};
+    return data;
+    } catch(err){
+      console.log(err)
+    }
+
   }
 
 export default function reducer(state=initialState, action) {
