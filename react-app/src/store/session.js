@@ -19,14 +19,23 @@ export const authenticate = () => async (dispatch) => {
         'Content-Type': 'application/json'
       }
     });
-    const data = await response.json();
-    if (data.errors) {
+    try {
+      if(!response.ok) throw response
+      const data = await response.json();
+
+      if (data.errors) {
         return;
+      }
+
+      dispatch(setUser(data))
+
+    } catch (err) {
+      console.log(err)
     }
-    
-    dispatch(setUser(data))
+
+
   }
-  
+
   export const login = (email, password) => async (dispatch)  => {
     const response = await fetch('/api/auth/login', {
       method: 'POST',
@@ -42,23 +51,23 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
         return data;
     }
-    
+
     dispatch(setUser(data))
     return {};
   }
-  
+
   export const logout = () => async (dispatch) => {
     const response = await fetch("/api/auth/logout", {
       headers: {
         "Content-Type": "application/json",
       }
     });
-    
+
     const data = await response.json();
     dispatch(removeUser());
   };
-  
-  
+
+
   export const signUp = (username, email, password) => async (dispatch)  => {
     const response = await fetch("/api/auth/signup", {
       method: "POST",
@@ -75,7 +84,7 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
         return data;
     }
-    
+
     dispatch(setUser(data))
     return {};
   }

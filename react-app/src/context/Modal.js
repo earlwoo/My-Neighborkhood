@@ -1,6 +1,7 @@
 // frontend/src/context/Modal.js
 import React, { useContext, useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { GrClose as Close } from "react-icons/gr";
 import './Modal.css';
 
 const ModalContext = React.createContext();
@@ -31,6 +32,7 @@ export function Modal({ onClose, children }) {
     <div id="modal">
       <div id="modal-background" onClick={onClose} />
       <div id="modal-content">
+        <div id="modal__close-button"><Close onClick={onClose} id="close__button" /></div>
         {children}
       </div>
     </div>,
