@@ -21,7 +21,7 @@ const LoginForm = ({ setShowLIModal }) => {
 
   useEffect(() => {
     if (user) {
-      setShowLIModal(false)
+      // setShowLIModal(false)
       return <Redirect to="/main" />;
     }
 

@@ -24,17 +24,17 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+        <NavBar />
       <Switch>
-        <Route path="/" exact={true} >
-          <Splash />
-        </Route>
-        <ProtectedRoute path="/main" exact={true} >
-          <Main />
-        </ProtectedRoute>
-        <ProtectedRoute path="/main/:userId" exact={true} >
-          <User />
-        </ProtectedRoute>
+          <Route path="/" exact={true} >
+            <Splash />
+          </Route>
+          <ProtectedRoute path="/main" exact={true} >
+            <Main />
+          </ProtectedRoute>
+          <ProtectedRoute path="/main/:userId" exact={true} >
+            <User />
+          </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

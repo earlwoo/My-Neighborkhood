@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
+import {getUsers} from "../store/users"
 import { login } from "../store/session"
 import LogoutButton from './auth/LogoutButton';
 import LoginFormModal from './auth/LoginFormModal'
@@ -8,12 +9,19 @@ import "./NavBar.css"
 import { useDispatch, useSelector } from 'react-redux';
 
 const NavBar = () => {
+
   const user = useSelector(state => state.session.user)
   const dispatch = useDispatch()
+  const history = useHistory()
+
+  //restore function redispatches login
 
   const onLogin = async (e) => {
     e.preventDefault();
     await dispatch(login("demo@aa.io", "password"));
+    await dispatch(getUsers())
+    history.push('/main')
+
   };
 
   const noUser = () => {
