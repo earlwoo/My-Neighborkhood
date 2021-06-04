@@ -1,3 +1,9 @@
+import Geocode from "react-geocode";
+
+const GOOGLE_API = process.env.REACT_APP_GOOGLE_API
+Geocode.setApiKey(GOOGLE_API);
+Geocode.setLocationType("ROOFTOP")
+
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
@@ -52,8 +58,20 @@ export const authenticate = () => async (dispatch) => {
         return data;
     }
 
-    dispatch(setUser(data))
-    return {};
+    Geocode.fromAddress(`${data.address.street} ${data.address.city} ${data.address.state} ${data.address.zip}`).then(
+      (response) => {
+          const { lat, lng } = response.results[0].geometry.location;
+
+          data.location = {lat, lng}
+      },
+      (error) => {
+          console.error(error);
+      }
+    ).then(()=>{dispatch(setUser(data))}).catch((e)=> console.log(e));
+    // if (data.location) {dispatch(setUser(data))}
+
+    return data;
+
   }
 
   export const logout = () => async (dispatch) => {
@@ -93,7 +111,7 @@ export const authenticate = () => async (dispatch) => {
         return data;
       }
       dispatch(setUser(data))
-      return data;
+
 
     } catch(err){
       console.log(err)

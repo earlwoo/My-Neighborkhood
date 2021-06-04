@@ -34,7 +34,7 @@ const SignUpForm = ({setShowSUModal}) => {
 
   useEffect(() => {
     if (user) {
-      setShowSUModal(false)
+      // setShowSUModal(false)
       return <Redirect to="/" />;
     }
   }, [setShowSUModal, user])
