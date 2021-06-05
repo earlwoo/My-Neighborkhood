@@ -26,7 +26,7 @@ const MapContainer = () => {
             googleMapsApiKey={GOOGLE_API}>
             {(curruser.location && Object.values(users).length) && <GoogleMap
                 mapContainerStyle={mapStyles}
-                zoom={14}
+                zoom={16}
                 center={curruser.location}
             >
                 {Object.values(users).map((user) => <Marker key={user.id} position={user.location} onClick={() => onSelect(user)} />

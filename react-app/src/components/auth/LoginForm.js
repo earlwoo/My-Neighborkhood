@@ -17,6 +17,11 @@ const LoginForm = ({ setShowLIModal }) => {
       setErrors(data.errors);
     }
 
+    if (user) {
+      setShowLIModal(false)
+      return <Redirect to="/main" />;
+    }
+
   };
 
   useEffect(() => {

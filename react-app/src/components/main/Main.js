@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import MapContainer from "./GoogleMaps"
+import {getUsers} from "../../store/users"
+import MapContainer from "./MapsContainer"
+
 
 
 const Main = () => {
@@ -8,6 +10,9 @@ const Main = () => {
     const users = useSelector(state => state.users)
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        dispatch(getUsers());
+    }, [dispatch])
 
     return (
         <div>
