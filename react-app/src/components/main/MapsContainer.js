@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api'
 import { useSelector } from 'react-redux';
+import MapsUserInfo from './MapsUserInfo'
 
 // const options = {
 //     zoomControlOptions: {
@@ -10,8 +11,8 @@ import { useSelector } from 'react-redux';
 // }
 
 const mapStyles = {
-    height: "100vh",
-    width: "100%"
+    height: "75vh",
+    width: "75%"
 };
 
 const MapContainer = () => {
@@ -37,8 +38,20 @@ const MapContainer = () => {
                     zoom={16}
                     center={curruser.location}
                 >
-                    {Object.values(users).map((user) => <Marker key={user.id} position={user.location} onClick={() => onSelect(user)} />
-                    )}
+                    {Object.values(users).map((user) => (
+                        <Marker key={user.id} position={user.location} onClick={() => onSelect(user)} />
+                    ))}
+                    {selected.location && (
+                        <InfoWindow
+                        position={selected.location}
+                        clickable={true}
+                        onCloseClick={() => setSelected({})}
+                        >
+                            <MapsUserInfo selected={selected} />
+                        </InfoWindow>
+                    )
+
+                    }
                 </GoogleMap>}
             </>
         )
