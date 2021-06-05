@@ -19,7 +19,7 @@ const NavBar = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     await dispatch(login("demo@aa.io", "password"));
-    await dispatch(getUsers())
+    await dispatch(getUsers());
     history.push('/main')
 
   };
