@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { logout } from "../../store/session";
+import { Button } from "@chakra-ui/react"
 
 const LogoutButton = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const LogoutButton = () => {
     history.push("/")
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  return <Button onClick={onLogout}>Logout</Button>;
 };
 
 export default LogoutButton;

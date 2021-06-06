@@ -12,7 +12,7 @@ import MapsUserInfo from './MapsUserInfo'
 
 const mapStyles = {
     height: "75vh",
-    width: "75%"
+    width: "90%"
 };
 
 const MapContainer = () => {

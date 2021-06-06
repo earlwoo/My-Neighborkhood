@@ -7,6 +7,7 @@ import LoginFormModal from './auth/LoginFormModal'
 import SignUpFormModal from './auth/SignUpFormModal'
 import "./NavBar.css"
 import { useDispatch, useSelector } from 'react-redux';
+import { Button } from "@chakra-ui/react"
 
 const NavBar = () => {
 
@@ -19,7 +20,7 @@ const NavBar = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     await dispatch(login("demo@aa.io", "password"));
-    
+
     history.push('/main')
 
   };
@@ -34,7 +35,7 @@ const NavBar = () => {
           <SignUpFormModal />
         </span>
         <span>
-          <button onClick={onLogin}>Demo User</button>
+          <Button colorScheme="teal" variant="link" onClick={onLogin}>Demo User</Button>
         </span>
       </>
     )
@@ -52,7 +53,7 @@ const NavBar = () => {
     <nav className="navbar-container">
       <span>
         <NavLink to="/" exact={true} activeClassName="active">
-          Home
+          <Button>Home</Button>
         </NavLink>
       </span>
       {user ? loggedIn() : noUser()}

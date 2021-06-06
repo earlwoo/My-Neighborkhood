@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import User from "./components/User";
 import { authenticate } from "./store/session";
+import { ChakraProvider } from "@chakra-ui/react"
 
 function App() {
   const user = useSelector(state => state.session.user)
