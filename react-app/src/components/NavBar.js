@@ -8,6 +8,7 @@ import SignUpFormModal from './auth/SignUpFormModal'
 import "./NavBar.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from "@chakra-ui/react"
+import ChatDrawer from "./drawers/ChatDrawer"
 
 const NavBar = () => {
 
@@ -43,9 +44,14 @@ const NavBar = () => {
 
   const loggedIn = () => {
     return (
-      <span>
-        <LogoutButton />
-      </span>
+      <>
+        <span>
+          <ChatDrawer/>
+        </span>
+        <span>
+          <LogoutButton />
+        </span>
+      </>
     )
   }
 
