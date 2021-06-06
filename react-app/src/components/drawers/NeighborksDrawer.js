@@ -12,21 +12,23 @@ import {
 import { useSelector } from 'react-redux';
 import MessageModal from "./MessageModal"
 
-const ChatDrawer = () => {
+const NeighborksDrawer = () => {
   const user = useSelector(state=> state.session.user)
+  const users = useSelector(state=>state.users)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
 
   const chats = Object.values(user.chats)
+  const usersArr = Object.values(users)
 
   return (
     <>
       <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
-        Chats
+        Neighborks
         </Button>
       <Drawer
         isOpen={isOpen}
-        placement="right"
+        placement="left"
         onClose={onClose}
         finalFocusRef={btnRef}
         size="sm"
@@ -37,8 +39,8 @@ const ChatDrawer = () => {
           <DrawerHeader>Have a Chat With Your Neighborks</DrawerHeader>
 
           <DrawerBody>
-            {chats.map(chat => (
-              <MessageModal chat={chat} user={user} key={chat.id}/>
+            {usersArr.map(user => (
+              <div>{user.firstname}</div>
             ))}
           </DrawerBody>
 
@@ -55,4 +57,4 @@ const ChatDrawer = () => {
 }
 
 
-export default ChatDrawer
+export default NeighborksDrawer
