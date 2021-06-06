@@ -10,7 +10,7 @@ import {
   DrawerCloseButton,
 } from "@chakra-ui/react"
 import { useSelector } from 'react-redux';
-import MessageModal from "./MessageModal"
+import ProfileModal from './ProfileModal';
 
 const NeighborksDrawer = () => {
   const user = useSelector(state=> state.session.user)
@@ -18,7 +18,6 @@ const NeighborksDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
 
-  const chats = Object.values(user.chats)
   const usersArr = Object.values(users)
 
   return (
@@ -40,7 +39,7 @@ const NeighborksDrawer = () => {
 
           <DrawerBody>
             {usersArr.map(user => (
-              <div>{user.firstname}</div>
+              <ProfileModal user={user}></ProfileModal>
             ))}
           </DrawerBody>
 

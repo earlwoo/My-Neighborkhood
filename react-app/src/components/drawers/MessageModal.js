@@ -11,9 +11,13 @@ import {
     ModalCloseButton,
     useDisclosure
 } from "@chakra-ui/react"
+import { useSelector } from 'react-redux';
 
 const MessageModal = ({ user, chat }) => {
+    const currUser = useSelector(state => state.session.user)
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const messages = Object.values(chat.messages)
     return (
         <>
             <Button onClick={onOpen}>{chat.name}</Button>
@@ -24,7 +28,9 @@ const MessageModal = ({ user, chat }) => {
                     <ModalHeader>Modal Title</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <p>message</p>
+                        {messages.map(message => (
+                            <p>{message.body}</p>
+                        ))}
                     </ModalBody>
 
                     <ModalFooter>
