@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import SignUpForm from './SignUpForm';
+import { Button } from "@chakra-ui/react"
 // import "./LoginForm.css"
 
 function SignUpFormModal() {
@@ -8,7 +9,7 @@ function SignUpFormModal() {
 
   return (
     <>
-      <button className="signup__btn" onClick={() => setShowSUModal(true)}>Sign Up</button>
+      <Button colorScheme="teal" variant="link" className="signup__btn" onClick={() => setShowSUModal(true)}>Sign Up</Button>
       {showSUModal && (
         <Modal onClose={() => setShowSUModal(false)}>
           <SignUpForm setShowSUModal={setShowSUModal}/>

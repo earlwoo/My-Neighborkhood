@@ -15,7 +15,7 @@ const Main = () => {
     }, [dispatch])
 
     return (
-        <div>
+        <div className="map_container">
             <MapContainer />
         </div>
     )
