@@ -28,9 +28,7 @@ const MapsUserInfo = ({ selected }) => {
                     <span>{selected.address.state}</span>
                     <span>{selected.address.zip}</span>
                 </div>
-                <div>
-                    {chat ? <MessageModal user={curruser} chat={chat} /> : <Button >Send Message</Button>}
-                </div>
+                {chat ? <MessageModal user={curruser} chat={chat} /> : <Button >Send Message</Button>}
             </Box>
         </div>
     )

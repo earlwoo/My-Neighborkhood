@@ -3,13 +3,13 @@ import thunk from "redux-thunk";
 import session from "./session"
 import users from "./users"
 import messages from "./messages"
-// import chats from "./chats"
+import chats from "./chats"
 
 const rootReducer = combineReducers({
     session,
     users,
     messages,
-    // chats
+    chats
 });
 
 

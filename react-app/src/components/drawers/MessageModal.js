@@ -14,7 +14,7 @@ import {
     useDisclosure,
     Avatar
 } from "@chakra-ui/react"
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RiDeleteBack2Fill as DeleteIcon } from "react-icons/ri";
 import { AiFillEdit as EditIcon } from "react-icons/ai";
 import { IoMdSend as SendButton } from "react-icons/io";
@@ -38,7 +38,7 @@ const MessageModal = ({ user, chat }) => {
 
     useEffect(() => {
         (async () => {
-           let fetcheddata = await dispatch(getMessages(chat.id))
+            let fetcheddata = await dispatch(getMessages(chat.id))
             setMessages(Object.values(fetcheddata))
         })()
 
@@ -96,11 +96,11 @@ const MessageModal = ({ user, chat }) => {
         setMessages(Object.values(fetcheddata))
     }
 
-    const deleteMessage = async (message_id) => {
+    const deleteMessage = (message_id) => async (e) => {
+        e.preventDefault()
         await dispatch(deleteMessageThunk(message_id))
-        await dispatch(authenticate())
-        let fetcheddata = await dispatch(getMessages(chat.id))
-        setMessages(Object.values(fetcheddata))
+        const fetchData = await dispatch(getMessages(chat.id))
+        setMessages(Object.values(fetchData))
     }
 
     const messageToEdit = (message) => (e) => {
@@ -141,7 +141,7 @@ const MessageModal = ({ user, chat }) => {
                     :
                     <>
                         <div id="edit__icon" className={`${message?.id} edit__icon`} onClick={messageToEdit(message)}><EditIcon />Edit</div>
-                        <div id="delete__icon" onClick={() => deleteMessage(message.id)}><DeleteIcon />Delete</div>
+                        <div id="delete__icon" onClick={deleteMessage(message.id)}><DeleteIcon />Delete</div>
                     </>
                 }
             </div>)
@@ -174,7 +174,7 @@ const MessageModal = ({ user, chat }) => {
                     <ModalHeader>Modal Title</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                    {messages.map((message, idx) => (
+                        {messages.map((message, idx) => (
                             <div key={idx} ref={messageRef} className="message" id={`${message.id}`}>
                                 <div className="message__avatar">
                                     <Avatar src={users[message?.user_id]?.avatar} alt="" />
@@ -194,10 +194,10 @@ const MessageModal = ({ user, chat }) => {
                     </ModalBody>
                     <ModalFooter>
                         {inputBox()}
-                            <Button colorScheme="blue" mr={3} onClick={onClose}>
-                                Close
+                        <Button colorScheme="blue" mr={3} onClick={onClose}>
+                            Close
                             </Button>
-                            <Button variant="ghost">Secondary Action</Button>
+                        <Button variant="ghost">Secondary Action</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
