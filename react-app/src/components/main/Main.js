@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import { getChats } from "../../store/chats"
 import {getUsers} from "../../store/users"
 import MapContainer from "./MapsContainer"
 
@@ -12,6 +13,7 @@ const Main = () => {
 
     useEffect(() => {
         dispatch(getUsers());
+        dispatch(getChats())
     }, [dispatch])
 
     return (

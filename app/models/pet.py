@@ -23,5 +23,4 @@ class Pet(db.Model):
         "image": self.image,
         "bio": self.bio,
         "age": self.age,
-        "bio": self.bio
         }

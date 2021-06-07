@@ -14,10 +14,10 @@ import MessageModal from "./MessageModal"
 
 const ChatDrawer = () => {
   const user = useSelector(state=> state.session.user)
+  const chats = useSelector(state=>state.chats)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
 
-  const chats = Object.values(user.chats)
 
   return (
     <>
@@ -37,7 +37,7 @@ const ChatDrawer = () => {
           <DrawerHeader>Have a Chat With Your Neighborks</DrawerHeader>
 
           <DrawerBody>
-            {chats.map(chat => (
+            {Object.values(chats).map(chat => (
               <MessageModal chat={chat} user={user} key={chat.id}/>
             ))}
           </DrawerBody>
