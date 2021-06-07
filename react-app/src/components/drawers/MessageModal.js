@@ -21,6 +21,7 @@ import { IoMdSend as SendButton } from "react-icons/io";
 import { AiOutlineEnter as SaveIcon } from "react-icons/ai";
 import { TiCancel as CancelIcon } from "react-icons/ti";
 import { authenticate } from '../../store/session';
+import { getChats } from '../../store/chats';
 
 let socket;
 const MessageModal = ({ user, chat }) => {
@@ -39,10 +40,12 @@ const MessageModal = ({ user, chat }) => {
     useEffect(() => {
         (async () => {
             let fetcheddata = await dispatch(getMessages(chat.id))
-            setMessages(Object.values(fetcheddata))
+            if(fetcheddata) {
+                setMessages(Object.values(fetcheddata))
+            }
         })()
 
-    }, [dispatch])
+    }, [dispatch, chat])
 
     useEffect(() => {
         // create websocket
@@ -99,8 +102,11 @@ const MessageModal = ({ user, chat }) => {
     const deleteMessage = (message_id) => async (e) => {
         e.preventDefault()
         await dispatch(deleteMessageThunk(message_id))
+        await dispatch(getChats())
         const fetchData = await dispatch(getMessages(chat.id))
-        setMessages(Object.values(fetchData))
+        if (Object.values(fetchData).length) {
+            setMessages(Object.values(fetchData))
+        }
     }
 
     const messageToEdit = (message) => (e) => {

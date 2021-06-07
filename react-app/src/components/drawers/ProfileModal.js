@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import {
     Modal,
+    Box,
     Button,
     Lorem,
     ModalOverlay,
@@ -9,7 +10,8 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-    useDisclosure
+    useDisclosure,
+    Avatar
 } from "@chakra-ui/react"
 import { useSelector } from 'react-redux';
 
@@ -17,8 +19,11 @@ const ProfileModal = ({ user }) => {
     const loggedUser = useSelector(state=>state.session.user)
     const [myProf, setmyProf] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
-    // single profile for neighbors or user, if user prop === logged user, it is our profile so we should be able to edit our info.
     // const users = useSelector(state => state.users)
+
+    const pet = user.pet
+
+    // if (user.id === loggedUser.id) {setmyProf(true)}
 
     return (
         <>
@@ -30,7 +35,10 @@ const ProfileModal = ({ user }) => {
                     <ModalHeader>{myProf ? "My Profile" : "My Neighbork"}My Neighbork</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <p>message</p>
+                        <div>
+                            <Avatar name={user.firstname} src={user.avatar} ></Avatar>
+                            <Avatar name={user.firstname} src={pet.image} ></Avatar>
+                        </div>
                     </ModalBody>
 
                     <ModalFooter>

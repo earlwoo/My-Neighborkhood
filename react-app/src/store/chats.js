@@ -24,13 +24,13 @@ export const getChats = () => async (dispatch) => {
     }
 }
 
-export const createChat = (name, chat_type) => async (dispatch) => {
+export const createChat = (chat) => async (dispatch) => {
     const res = await fetch(`/api/chats/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ name, chat_type })
+        body: JSON.stringify({ chat })
     })
     try {
         if (!res.ok) throw res
@@ -40,24 +40,6 @@ export const createChat = (name, chat_type) => async (dispatch) => {
         }
         dispatch(addChat(chat))
         return chat;
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-export const createDM = (user_ids) => async (dispatch) => {
-    const res = await fetch(`/api/chats/dm`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ user_ids })
-    })
-    try {
-        if (!res.ok) throw res
-        const dm = await res.json();
-        dispatch(addChat(dm))
-        return dm;
     } catch (error) {
         console.log(error)
     }

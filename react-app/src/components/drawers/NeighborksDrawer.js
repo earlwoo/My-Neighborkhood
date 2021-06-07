@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import ProfileModal from './ProfileModal';
 
 const NeighborksDrawer = () => {
-  const user = useSelector(state=> state.session.user)
+  const loggedUser = useSelector(state=> state.session.user)
   const users = useSelector(state=>state.users)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
@@ -38,9 +38,10 @@ const NeighborksDrawer = () => {
           <DrawerHeader>Have a Chat With Your Neighborks</DrawerHeader>
 
           <DrawerBody>
-            {usersArr.map(user => (
-              <ProfileModal key={user.id} user={user}></ProfileModal>
-            ))}
+            {usersArr.map(user => {
+              if(user.id !== loggedUser.id) {
+                return <ProfileModal key={user.id} user={user}></ProfileModal>
+              }})}
           </DrawerBody>
 
           <DrawerFooter>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api'
 import { useSelector } from 'react-redux';
 import MapsUserInfo from './MapsUserInfo'
@@ -18,6 +18,7 @@ const mapStyles = {
 const MapContainer = () => {
     const curruser = useSelector(state => state.session.user)
     const users = useSelector(state => state.users)
+    const chats = useSelector(state => state.chats)
     const [selected, setSelected] = useState({});
 
     const { isLoaded, loadError } = useJsApiLoader({
@@ -25,8 +26,13 @@ const MapContainer = () => {
         // ...otherOptions
     })
 
+
+    useEffect(() => {
+
+    }, [users, chats])
+
     const onSelect = item => {
-        setSelected(item);
+        setSelected(users[item]);
     }
 
     const renderMap = () => {
@@ -39,15 +45,15 @@ const MapContainer = () => {
                     center={curruser.location}
                 >
                     {Object.values(users).map((user) => {
-                        if(curruser.id !== user.id) {
-                            return (<Marker key={user.id} position={user.location} onClick={() => onSelect(user)} />)
+                        if (curruser.id !== user.id) {
+                            return (<Marker key={user.id} position={user.location} onClick={() => onSelect(user.id)} />)
                         }
                     })}
                     {selected.location && (
                         <InfoWindow
-                        position={selected.location}
-                        clickable={true}
-                        onCloseClick={() => setSelected({})}
+                            position={selected.location}
+                            clickable={true}
+                            onCloseClick={() => setSelected({})}
                         >
                             <MapsUserInfo selected={selected} />
                         </InfoWindow>
