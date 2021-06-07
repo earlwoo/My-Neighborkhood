@@ -38,9 +38,11 @@ const MapContainer = () => {
                     zoom={16}
                     center={curruser.location}
                 >
-                    {Object.values(users).map((user) => (
-                        <Marker key={user.id} position={user.location} onClick={() => onSelect(user)} />
-                    ))}
+                    {Object.values(users).map((user) => {
+                        if(curruser.id !== user.id) {
+                            return (<Marker key={user.id} position={user.location} onClick={() => onSelect(user)} />)
+                        }
+                    })}
                     {selected.location && (
                         <InfoWindow
                         position={selected.location}

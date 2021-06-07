@@ -1,10 +1,16 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
-import { Box, Avatar, AvatarGroup, Divider } from "@chakra-ui/react"
+import { Box, Avatar, AvatarGroup, Divider, Button } from "@chakra-ui/react"
+import MessageModal from '../drawers/MessageModal';
 
 
 const MapsUserInfo = ({ selected }) => {
     const curruser = useSelector(state => state.session.user)
+    const chat = Object.values(selected.chats).find(chat => {
+        return curruser.id in chat.users
+    })
+
+    console.log("!!!!!!!!!!", chat)
     return (
         <div>
             <Box maxW="lg" borderWidth="1px" borderRadius="lg" overflow="hidden">
@@ -22,6 +28,9 @@ const MapsUserInfo = ({ selected }) => {
                     <span>{selected.address.state}</span>
                     <span>{selected.address.zip}</span>
                 </div>
+                <div>
+                    {chat ? <MessageModal user={curruser} chat={chat} /> : <Button >Send Message</Button>}
+                </div>
             </Box>
         </div>
     )
@@ -29,3 +38,7 @@ const MapsUserInfo = ({ selected }) => {
 
 
 export default MapsUserInfo
+
+
+
+{/* <Avatar size="md" name={selected.firstname} src={selected.avatar} /> */ }

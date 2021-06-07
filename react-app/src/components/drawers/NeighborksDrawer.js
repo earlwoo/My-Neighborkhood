@@ -39,7 +39,7 @@ const NeighborksDrawer = () => {
 
           <DrawerBody>
             {usersArr.map(user => (
-              <ProfileModal user={user}></ProfileModal>
+              <ProfileModal key={user.id} user={user}></ProfileModal>
             ))}
           </DrawerBody>
 
