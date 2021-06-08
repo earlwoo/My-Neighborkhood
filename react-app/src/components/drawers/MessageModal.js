@@ -37,6 +37,10 @@ const MessageModal = ({ user, chat }) => {
     const dispatch = useDispatch()
     const messageRef = useRef();
 
+
+    let otherUser = Object.values(chat.users).find(user => user.id !== currUser.id)
+
+
     useEffect(() => {
         (async () => {
             let fetcheddata = await dispatch(getMessages(chat.id))
@@ -172,12 +176,14 @@ const MessageModal = ({ user, chat }) => {
 
     return (
         <>
-            <Button onClick={onOpen}>{chat.name}</Button>
+            <Button backgroundColor={"rgb(0, 208, 111)"} onClick={onOpen}>{chat.name}</Button>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal useInert={false} isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Modal Title</ModalHeader>
+                    <ModalHeader backgroundColor={"rgb(0, 208, 111)"} >
+                        <Avatar name={otherUser.firstname} src={otherUser.avatar}></Avatar>
+                    </ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
                         {messages.map((message, idx) => (

@@ -30,6 +30,7 @@ const ChatDrawer = () => {
         onClose={onClose}
         finalFocusRef={btnRef}
         size="sm"
+        useInert={false}
       >
         <DrawerOverlay />
         <DrawerContent>

@@ -3,7 +3,7 @@ import {
     Modal,
     Box,
     Button,
-    Lorem,
+    Image,
     ModalOverlay,
     ModalContent,
     ModalHeader,
@@ -11,41 +11,72 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
+    Divider,
     Avatar
 } from "@chakra-ui/react"
 import { useSelector } from 'react-redux';
+import "./Profile.css"
 
 const ProfileModal = ({ user }) => {
-    const loggedUser = useSelector(state=>state.session.user)
+    const loggedUser = useSelector(state => state.session.user)
     const [myProf, setmyProf] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
     // const users = useSelector(state => state.users)
 
     const pet = user.pet
 
-    // if (user.id === loggedUser.id) {setmyProf(true)}
+    if (user.id === loggedUser.id) { setmyProf(true) }
 
     return (
         <>
             <Button onClick={onOpen}>{user.firstname}</Button>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal size="lg" isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>{myProf ? "My Profile" : "My Neighbork"}My Neighbork</ModalHeader>
+                    <ModalHeader backgroundColor={"rgb(0, 208, 111)"} >{myProf ? "My Profile" : `My Neighbork ${user.firstname}`}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <div>
-                            <Avatar name={user.firstname} src={user.avatar} ></Avatar>
-                            <Avatar name={user.firstname} src={pet.image} ></Avatar>
+                        <div className="profile__avatars-container">
+                            <div className="profile__avatars-individual" >
+                                {/* <Avatar size="2xl" name={user.firstname} src={user.avatar} ></Avatar> */}
+                                <Box boxSize="200px">
+                                    <Image src={user.avatar} alt="User Photo" />
+                                    {myProf && <div>mine</div>}
+                                </Box>
+                            </div>
+                            <div className="profile__bio-container" >
+                                <div>Name: {user.firstname} {user.lastname}</div>
+                                <Divider />
+                                <div>Email: {user.email}</div>
+                                <Divider />
+                                <div>Bio:
+                                    <span className="bio-span">{user.bio}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <Divider />
+                        <div className="profile__avatars-container">
+                            <div className="profile__bio-container" >
+                                <div>Name: {pet.name}</div>
+                                <Divider />
+                                <div>Age: {pet.age}</div>
+                                <Divider />
+                                <div>Bio:
+                                    <span className="bio-span">{pet.bio}</span>
+                                </div>
+                            </div>
+                            <div className="profile__avatars-individual" >
+                                {/* <Avatar size="2xl" name={pet.name} src={pet.image} ></Avatar> */}
+                                <Box boxSize="200px">
+                                    <Image src={pet.image} alt="Pet Photo" />
+                                </Box>
+                            </div>
                         </div>
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme="blue" mr={3} onClick={onClose}>
-                            Close
-            </Button>
-                        <Button variant="ghost">Secondary Action</Button>
+                        <Button colorScheme="blue" mr={3} onClick={onClose} >Close</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

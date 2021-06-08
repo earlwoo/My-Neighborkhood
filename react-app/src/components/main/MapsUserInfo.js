@@ -13,9 +13,6 @@ const MapsUserInfo = ({ selected }) => {
     const dispatch = useDispatch()
     // const [ourChat, setOurChat] = useState()
 
-
-    console.log("!!!!!!! selected", selected)
-
     useEffect(()=>{
 
     },[dispatch, chatStore])
