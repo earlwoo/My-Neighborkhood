@@ -89,8 +89,10 @@ def sign_up():
         )
 
         db.session.add(pet)
-        
         db.session.commit()
+
+        global_chat = Chat.query.get(1)
+        global_chat.users.append(new_user)
 
         login_user(new_user)
         return new_user_dict

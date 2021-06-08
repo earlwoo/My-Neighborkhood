@@ -1,5 +1,6 @@
 from werkzeug.security import generate_password_hash
 from app.models import db, User
+from random import randint
 from faker import Faker
 import json
 fake = Faker()
@@ -23,7 +24,7 @@ def seed_users():
         'https://randomuser.me/api/portraits/women/19.jpg',
         'https://randomuser.me/api/portraits/men/78.jpg'
     ]
-    
+
     demo1 = User(
         firstname='Demo',
         lastname='User',
@@ -36,7 +37,7 @@ def seed_users():
     demo2 = User(
         firstname=fake.first_name(),
         lastname=fake.last_name(),
-        bio="i'm with the testing crew",
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1922 Lambert St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
@@ -45,7 +46,7 @@ def seed_users():
     demo3 = User(
         firstname=fake.first_name(),
         lastname=fake.last_name(),
-        bio='happy to be here testing',
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '2239 Moore St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
@@ -54,7 +55,7 @@ def seed_users():
     demo4 = User(
         firstname=fake.first_name(),
         lastname=fake.last_name(),
-        bio="i'm with the testing crew",
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1811 McKean St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
@@ -63,7 +64,7 @@ def seed_users():
     demo5 = User(
         firstname=fake.first_name(),
         lastname=fake.last_name(),
-        bio="i'm with the testing crew",
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1732 Wolf St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
@@ -72,7 +73,7 @@ def seed_users():
     demo6 = User(
         firstname=fake.first_name(),
         lastname=fake.last_name(),
-        bio="i'm with the testing crew",
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1532 McKean St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
@@ -81,7 +82,7 @@ def seed_users():
     demo7 = User(
         firstname=fake.first_name(),
         lastname=fake.last_name(),
-        bio="i'm with the testing crew",
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '2031 S Bancroft St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
@@ -90,7 +91,7 @@ def seed_users():
     demo8 = User(
         firstname=fake.first_name(),
         lastname=fake.last_name(),
-        bio="i'm with the testing crew",
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '17116 Snyder Ave','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
@@ -99,7 +100,7 @@ def seed_users():
     demo9 = User(
         firstname=fake.first_name(),
         lastname=fake.last_name(),
-        bio="i'm with the testing crew",
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '2122 Dorrance St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
@@ -108,7 +109,7 @@ def seed_users():
     demo10 = User(
         firstname=fake.first_name(),
         lastname=fake.last_name(),
-        bio="i'm with the testing crew",
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '2044 S Garnet St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
@@ -117,7 +118,7 @@ def seed_users():
     demo11 = User(
         firstname=fake.first_name(),
         lastname=fake.last_name(),
-        bio="i'm with the testing crew",
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1822 Dudley St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
@@ -126,7 +127,7 @@ def seed_users():
     demo12 = User(
         firstname=fake.first_name(),
         lastname=fake.last_name(),
-        bio="i'm with the testing crew",
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1711 Sigel St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
@@ -135,7 +136,7 @@ def seed_users():
     demo13 = User(
         firstname=fake.first_name(),
         lastname=fake.last_name(),
-        bio="i'm with the testing crew",
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1946 S Chadwick St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
@@ -144,7 +145,7 @@ def seed_users():
     demo14 = User(
         firstname=fake.first_name(),
         lastname=fake.last_name(),
-        bio="i'm with the testing crew",
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1713 McKean St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
@@ -153,7 +154,7 @@ def seed_users():
     demo15 = User(
         firstname=fake.first_name(),
         lastname=fake.last_name(),
-        bio="i'm with the testing crew",
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1700 Jackson St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),

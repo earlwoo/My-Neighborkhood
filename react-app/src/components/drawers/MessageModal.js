@@ -56,6 +56,7 @@ const MessageModal = ({ user, chat }) => {
         socket = io();
         // listen for chat events
         socket.on(chat.id, (data) => {
+            console.log("!!! inside socet")
             // when we recieve a chat, add it into our messages array in state
             setMessages(messages => [...messages, data])
         })
@@ -185,7 +186,7 @@ const MessageModal = ({ user, chat }) => {
                         <Avatar name={otherUser.firstname} src={otherUser.avatar}></Avatar>
                     </ModalHeader>
                     <ModalCloseButton />
-                    <ModalBody>
+                    <ModalBody overflow="auto">
                         {messages.map((message, idx) => (
                             <div key={idx} ref={messageRef} className="message" id={`${message.id}`}>
                                 <div className="message__avatar">

@@ -14,8 +14,6 @@ def seed_chats():
     allusers = allusers[0:8]
     allchats = Chat.query.all()
 
-    print("!!!!!!", allchats)
-    print("!!!!!!", allusers)
 
 
     allchats[0].users.append(allusers[0])

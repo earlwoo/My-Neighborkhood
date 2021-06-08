@@ -41,7 +41,8 @@ const ProfileModal = ({ user }) => {
                             <div className="profile__avatars-individual" >
                                 {/* <Avatar size="2xl" name={user.firstname} src={user.avatar} ></Avatar> */}
                                 <Box boxSize="200px">
-                                    <Image src={user.avatar} alt="User Photo" />
+                                    {/* <Image src={user.avatar} alt="User Photo" /> */}
+                                    <Avatar size="2xl" name={user.firstname} src={user.avatar} />
                                     {myProf && <div>mine</div>}
                                 </Box>
                             </div>
@@ -57,6 +58,9 @@ const ProfileModal = ({ user }) => {
                         </div>
                         <Divider />
                         <div className="profile__avatars-container">
+                            <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+
+                            </Box>
                             <div className="profile__bio-container" >
                                 <div>Name: {pet.name}</div>
                                 <Divider />
@@ -69,7 +73,8 @@ const ProfileModal = ({ user }) => {
                             <div className="profile__avatars-individual" >
                                 {/* <Avatar size="2xl" name={pet.name} src={pet.image} ></Avatar> */}
                                 <Box boxSize="200px">
-                                    <Image src={pet.image} alt="Pet Photo" />
+                                    {/* <Image src={pet.image} alt="Pet Photo" /> */}
+                                    <Avatar size="2xl" name={pet.name} src={pet.image} />
                                 </Box>
                             </div>
                         </div>
