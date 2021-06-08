@@ -18,7 +18,7 @@ const MapsUserInfo = ({ selected }) => {
     },[dispatch, chatStore])
 
     let ourChat = Object.values(chatStore).find(chat => {
-                        return ((curruser.id in chat.users) && (selected.id in chat.users))})
+                        return ((chat.id !== 1) && (curruser.id in chat.users) && (selected.id in chat.users))})
         // set current chat to state
 
     console.log("~~~~~ ourchat", ourChat)

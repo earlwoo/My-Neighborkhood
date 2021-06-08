@@ -60,9 +60,6 @@ const NavBar = () => {
           <ChatDrawer />
         </span>
         <span>
-          <ProfileModal user={user} />
-        </span>
-        <span>
           <LogoutButton />
         </span>
       </>

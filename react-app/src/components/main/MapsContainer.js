@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api'
 import { useSelector } from 'react-redux';
 import MapsUserInfo from './MapsUserInfo'
+import dog from "./dog.png"
 
 // const options = {
 //     zoomControlOptions: {
@@ -46,7 +47,7 @@ const MapContainer = () => {
                 >
                     {Object.values(users).map((user) => {
                         if (curruser.id !== user.id) {
-                            return (<Marker key={user.id} position={user.location} onClick={() => onSelect(user.id)} />)
+                            return (<Marker icon={dog} key={user.id} position={user.location} onClick={() => onSelect(user.id)} />)
                         }
                     })}
                     {selected.location && (
