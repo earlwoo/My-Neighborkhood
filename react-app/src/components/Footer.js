@@ -1,11 +1,12 @@
 import React from 'react'
+import { Container } from "@chakra-ui/react"
 
 
 const Footer = () => {
     return (
-        <div>
+        <Container maxWidth="100%" >
 
-        </div>
+        </Container>
     )
 }
 

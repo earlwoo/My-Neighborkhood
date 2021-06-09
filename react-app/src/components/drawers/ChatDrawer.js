@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button, Input, useDisclosure} from "@chakra-ui/react"
+import { Avatar, Button, Divider, Input, space, useDisclosure} from "@chakra-ui/react"
 import {
   Drawer,
   DrawerBody,
@@ -8,14 +8,21 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
+  Flex,
+  Spacer,
+  Box
 } from "@chakra-ui/react"
 import { useSelector } from 'react-redux';
 import MessageModal from "./MessageModal"
+import { Portal } from "@chakra-ui/react"
+import { NavLink } from 'react-router-dom';
 
 const ChatDrawer = () => {
+  const ref = useRef()
   const user = useSelector(state=> state.session.user)
   const chats = useSelector(state=>state.chats)
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [show, setShow] = useState(false)
   const btnRef = useRef()
 
 
@@ -29,18 +36,29 @@ const ChatDrawer = () => {
         placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
-        size="sm"
+        size="xs"
         useInert={false}
+        containerRef={ref}
       >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader>Have a Chat With Your Neighborks</DrawerHeader>
 
-          <DrawerBody>
-            {Object.values(chats).map(chat => (
-              <MessageModal chat={chat} user={user} key={chat.id}/>
-            ))}
+          <DrawerBody className="chat_drawer">
+            <Flex flexDirection="column" alignItems="flex-start">
+              {Object.values(chats).map(chat => (
+                <Box>
+                  <Avatar src={Object.values(chat.users)[1].avatar}></Avatar>
+                  <Box as="button" onClick={() => setShow(chat)}>{Object.values(chat.users)[1].name}
+                  </ Box>
+                  <Divider />
+                </Box >
+              ))}
+                <Portal >
+                  {show.id && <MessageModal setShow={setShow} ref={ref} chat={show} user={user} />}
+                </Portal>
+            </Flex>
           </DrawerBody>
 
           <DrawerFooter>

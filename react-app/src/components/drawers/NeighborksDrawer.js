@@ -7,7 +7,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton,
+  DrawerCloseButton
 } from "@chakra-ui/react"
 import { useSelector } from 'react-redux';
 import ProfileModal from './ProfileModal';
@@ -17,6 +17,7 @@ const NeighborksDrawer = () => {
   const users = useSelector(state=>state.users)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
+  const [prof, setProf] = useState({})
 
   const usersArr = Object.values(users)
 
@@ -40,8 +41,9 @@ const NeighborksDrawer = () => {
           <DrawerBody>
             {usersArr.map(user => {
               if(user.id !== loggedUser.id) {
-                return <ProfileModal key={user.id} user={user}></ProfileModal>
+                return <Button onClick={()=>{setProf(user)}} >neighbork</Button>
               }})}
+            {prof.id && <ProfileModal setProf={setProf} user={prof}></ProfileModal>}
           </DrawerBody>
 
           <DrawerFooter>

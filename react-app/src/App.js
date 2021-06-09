@@ -7,6 +7,8 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import User from "./components/User";
 import { authenticate } from "./store/session";
+import ProfileModal from "./components/drawers/ProfileModal"
+import MessageModal from "./components/drawers/MessageModal";
 
 import Footer from "./components/Footer";
 
@@ -34,8 +36,8 @@ function App() {
         <ProtectedRoute path="/main" exact={true} >
           <Main />
         </ProtectedRoute>
-        <ProtectedRoute path="/main/:userId" exact={true} >
-          <User />
+        <ProtectedRoute path="/main/:chatId" exact={true} >
+          <MessageModal />
         </ProtectedRoute>
       </Switch>
         <Footer />

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
     Modal,
     Box,
@@ -25,13 +25,17 @@ const ProfileModal = ({ user }) => {
 
     const pet = user.pet
 
+    useEffect(()=> {
+        onOpen()
+    }, [user])
+
     if (user.id === loggedUser.id) { setmyProf(true) }
 
     return (
         <>
-            <Button onClick={onOpen}>{user.firstname}</Button>
+            {/* <Button onClick={onOpen}>{user.firstname}</Button> */}
 
-            <Modal size="lg" isOpen={isOpen} onClose={onClose}>
+            <Modal maxH="500px" size="lg" isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader backgroundColor={"rgb(0, 208, 111)"} >{myProf ? "My Profile" : `My Neighbork ${user.firstname}`}</ModalHeader>

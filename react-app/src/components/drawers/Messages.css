@@ -1,0 +1,126 @@
+.container{
+    padding-top: 10px;
+}
+
+.message{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+/* .container {
+    display: flex;
+    flex-direction: column;
+} */
+.message__content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.message__options>div {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin-left: 20px;
+}
+
+.quick{
+    display: flex;
+    font-size: 12px;
+    font-weight: 650;
+    justify-content: space-between;
+    width: 80%;
+}
+
+#edit__icon,
+#delete__icon,
+#save__icon,
+#cancel__icon {
+    padding: 1px 3px;
+    font-size: 13px;
+    font-weight: 500;
+    border: none;
+    background-color: inherit;
+    border-radius: 999px;
+    margin: 0 4px;
+    cursor: pointer;
+    color: #61606195;
+    display: flex;
+    align-items: center;
+}
+
+/* .message__options div:hover {
+    background-color:lightgray;
+    color: #616061;
+} */
+
+#edit__icon:hover {
+    background-color: #24a0ed;
+    color: white;
+}
+
+#save__icon:hover {
+    background-color: #007A5A;
+    color: white;
+}
+
+#delete__icon:hover,
+#cancel__icon:hover {
+    background-color: #ff4040;
+    color: white;
+}
+
+
+.input__box {
+    padding: 10px;
+    width: 80%;
+    margin: none;
+}
+
+
+.msg_body {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.input__edit__box {
+    width: 90%;
+    height: 28px;
+    outline-width: 0;
+    font-size: 15px;
+    padding-left: 8px;
+    padding-right: 8px;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-radius: 3px;
+    background-color: inherit;
+}
+
+.input__box {
+    width: 90%;
+    /* width: 100%; */
+    height: 36px;
+    outline-width: 0;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+
+}
+
+.send__button.enabled{
+    opacity: 1;
+}
+
+.send__button{
+    opacity: .2;
+}
+
+
+.hi{
+    display: flex;
+}
