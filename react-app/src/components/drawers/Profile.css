@@ -1,8 +1,4 @@
-.profile__avatars-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .profile__avatars-individual{
     display: flex;
@@ -17,15 +13,16 @@
     justify-content: space-evenly;
     background-color: #F7FAFC;
     box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
-    min-width: 250px;
+    min-width: 312px;
     border-radius: 5px;
-    min-height: 210px;
+
 }
 
 
-.bio-span{
-    background-color: #EDF2F7;
-    box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
-    height: px;
+.petpic{
+    padding-left: 5px;
 }
 
+.userpic{
+    padding-right: 5px;
+}

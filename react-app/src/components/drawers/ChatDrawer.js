@@ -43,18 +43,18 @@ const ChatDrawer = () => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Have a Chat With Your Neighborks</DrawerHeader>
+          <DrawerHeader backgroundColor="rgb(0, 208, 111)">Chat With Your Neighborks</DrawerHeader>
 
           <DrawerBody className="chat_drawer">
             <Flex flexDirection="column" alignItems="flex-start">
               {Object.values(chats).map(chat => (
-                <Box  fontWeight="semibold"
+                <Box as="button" onClick={() => setShow(chat)} fontWeight="semibold"
                 letterSpacing="wide"
                 fontSize="xs" marginBottom="10px" padding="10px" >
                   <Avatar src={Object.values(chat.users)[1].avatar}></Avatar>
-                  <Box as="button" onClick={() => setShow(chat)}>{Object.values(chat.users)[1].name}
+                  <Box fontSize="14" paddingLeft="5" fontWeight="semibold" as="button" >{Object.values(chat.users)[1].name}
                   </ Box>
-                  <Divider maxWidth="275px"/>
+                  <Divider paddingTop="1" maxWidth="275px"/>
                 </Box >
 
               ))}

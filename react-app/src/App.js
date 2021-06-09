@@ -36,9 +36,6 @@ function App() {
         <ProtectedRoute path="/main" exact={true} >
           <Main />
         </ProtectedRoute>
-        <ProtectedRoute path="/main/:chatId" exact={true} >
-          <MessageModal />
-        </ProtectedRoute>
       </Switch>
         <Footer />
     </BrowserRouter>

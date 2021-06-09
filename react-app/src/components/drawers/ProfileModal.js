@@ -12,12 +12,14 @@ import {
     ModalCloseButton,
     useDisclosure,
     Divider,
-    Avatar
+    Avatar,
+    Text,
+    Flex
 } from "@chakra-ui/react"
 import { useSelector } from 'react-redux';
 import "./Profile.css"
 
-const ProfileModal = ({ user }) => {
+const ProfileModal = ({ setProf, user }) => {
     const loggedUser = useSelector(state => state.session.user)
     const [myProf, setmyProf] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -25,7 +27,7 @@ const ProfileModal = ({ user }) => {
 
     const pet = user.pet
 
-    useEffect(()=> {
+    useEffect(() => {
         onOpen()
     }, [user])
 
@@ -35,57 +37,57 @@ const ProfileModal = ({ user }) => {
         <>
             {/* <Button onClick={onOpen}>{user.firstname}</Button> */}
 
-            <Modal maxH="500px" size="lg" isOpen={isOpen} onClose={onClose}>
+            <Modal maxH="500px" size="lg" isOpen={isOpen} onClose={() => {
+                onClose()
+                setProf({})
+            }}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader backgroundColor={"rgb(0, 208, 111)"} >{myProf ? "My Profile" : `My Neighbork ${user.firstname}`}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
+                        <Flex flexDirection="column" alignItems="center">
                         <div className="profile__avatars-container">
-                            <div className="profile__avatars-individual" >
-                                {/* <Avatar size="2xl" name={user.firstname} src={user.avatar} ></Avatar> */}
-                                <Box boxSize="200px">
-                                    {/* <Image src={user.avatar} alt="User Photo" /> */}
+                            <Flex alignItems="center" minW="md" borderWidth="1px" borderRadius="lg" overflow="hidden">
+                                <div className="profile__avatars-individual userpic" >
                                     <Avatar size="2xl" name={user.firstname} src={user.avatar} />
-                                    {myProf && <div>mine</div>}
-                                </Box>
-                            </div>
-                            <div className="profile__bio-container" >
-                                <div>Name: {user.firstname} {user.lastname}</div>
-                                <Divider />
-                                <div>Email: {user.email}</div>
-                                <Divider />
-                                <div>Bio:
-                                    <span className="bio-span">{user.bio}</span>
+                                        {myProf && <div>mine</div>}
                                 </div>
-                            </div>
+                                <div className="profile__bio-container" >
+                                    <ModalHeader textAlign="center" fontSize="20" fontWeight="bolder"  minHeight="100%" minWidth="100%" borderRadius="lg" >{user.firstname} {user.lastname}</ModalHeader>
+                                    <Divider />
+                                    <Text fontSize="14" color={"rgb(0, 208, 111)"} as="u" fontWeight="semibold" >Email</Text>
+                                    <Text fontSize="12" fontWeight="bold">{user.email}</Text>
+                                    <Divider />
+                                    <Text fontSize="14" color={"rgb(0, 208, 111)"} as="u" fontWeight="semibold" >About</Text>
+                                    <Text textAlign="center" maxInlineSize="255"  fontWeight="semibold">{user.bio}</Text>
+                                </div>
+                            </Flex>
                         </div>
                         <Divider />
                         <div className="profile__avatars-container">
-                            <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+                            <Flex alignItems="center" maxW="md" borderWidth="1px" borderRadius="lg" overflow="hidden">
+                                <div className="profile__bio-container" >
+                                    <ModalHeader textAlign="center" fontSize="20" fontWeight="bolder"  minHeight="100%" minWidth="100%" borderRadius="lg" >{pet.name}</ModalHeader>
+                                    <Divider />
+                                    <Text fontSize="14" color={"rgb(0, 208, 111)"} as="u" fontWeight="semibold" >Age</Text>
+                                    <Text fontWeight="bold" >{pet.age}</Text>
+                                    <Divider />
+                                    <Text fontSize="14" color={"rgb(0, 208, 111)"} as="u" fontWeight="semibold" >About</Text>
+                                    <Text textAlign="center" fontWeight="semibold" >{pet.bio}</Text>
 
-                            </Box>
-                            <div className="profile__bio-container" >
-                                <div>Name: {pet.name}</div>
-                                <Divider />
-                                <div>Age: {pet.age}</div>
-                                <Divider />
-                                <div>Bio:
-                                    <span className="bio-span">{pet.bio}</span>
                                 </div>
-                            </div>
-                            <div className="profile__avatars-individual" >
-                                {/* <Avatar size="2xl" name={pet.name} src={pet.image} ></Avatar> */}
-                                <Box boxSize="200px">
-                                    {/* <Image src={pet.image} alt="Pet Photo" /> */}
+                                <div className="profile__avatars-individual petpic" >
                                     <Avatar size="2xl" name={pet.name} src={pet.image} />
-                                </Box>
-                            </div>
+                                </div>
+
+                            </Flex>
                         </div>
+                        </Flex>
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme="blue" mr={3} onClick={onClose} >Close</Button>
+                        <Button variant="outline" mr={3} onClick={onClose} >Close</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

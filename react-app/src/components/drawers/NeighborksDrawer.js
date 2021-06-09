@@ -1,13 +1,15 @@
 import React, { useRef, useState } from 'react';
-import { Button, Input, useDisclosure} from "@chakra-ui/react"
+import { Button, Divider, Flex, Input, useDisclosure} from "@chakra-ui/react"
 import {
   Drawer,
+  Avatar,
+  AvatarGroup,
   DrawerBody,
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton
+  DrawerCloseButton, Box
 } from "@chakra-ui/react"
 import { useSelector } from 'react-redux';
 import ProfileModal from './ProfileModal';
@@ -31,17 +33,28 @@ const NeighborksDrawer = () => {
         placement="left"
         onClose={onClose}
         finalFocusRef={btnRef}
-        size="sm"
+        size="xs"
       >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Have a Chat With Your Neighborks</DrawerHeader>
+          <DrawerHeader backgroundColor="rgb(0, 208, 111)">Your Neigborkhood</DrawerHeader>
 
           <DrawerBody>
             {usersArr.map(user => {
               if(user.id !== loggedUser.id) {
-                return <Button onClick={()=>{setProf(user)}} >neighbork</Button>
+                return (
+                  <Flex flexDirection="column" alignItems="flex-end" >
+                    <Flex paddingBottom="2" paddingTop="2" justifyContent="space-between" alignItems="center" flexDirection="row" as="button" onClick={()=>{setProf(user)}} >
+                      <AvatarGroup size="lg" max={2}>
+                        <Avatar name={user.firstname} src={user.avatar} />
+                        <Avatar name={user.pet.name} src={user.pet.image} />
+                      </AvatarGroup>
+                      <Box fontWeight="semibold" >{user.firstname} & {user.pet.name}</Box>
+                    </Flex>
+                    <Divider pas></Divider>
+                  </Flex>
+                )
               }})}
             {prof.id && <ProfileModal setProf={setProf} user={prof}></ProfileModal>}
           </DrawerBody>

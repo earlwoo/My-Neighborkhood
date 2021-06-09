@@ -223,7 +223,7 @@ const MessageModal = ({ setShow, chat, user }) => {
                                         </div>
                                     </div>
                                     {editMessage && (Number(messageId) === Number(message.id)) ? (editInputBox(message)) : (<p className="msg_body">{message?.body}
-                                        <span className="content__edited-tag">{(message.created_at !== message.updated_at) && " (edited)"}</span>
+                                        <span className="content__edited-tag">{(message.created_at !== message.updated_at) && <Text as="sub">   (edited)</Text>}</span>
                                     </p>)}
                                 </div>
                                 <Divider></Divider>
