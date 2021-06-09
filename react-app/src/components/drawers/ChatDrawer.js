@@ -48,12 +48,15 @@ const ChatDrawer = () => {
           <DrawerBody className="chat_drawer">
             <Flex flexDirection="column" alignItems="flex-start">
               {Object.values(chats).map(chat => (
-                <Box>
+                <Box  fontWeight="semibold"
+                letterSpacing="wide"
+                fontSize="xs" marginBottom="10px" padding="10px" >
                   <Avatar src={Object.values(chat.users)[1].avatar}></Avatar>
                   <Box as="button" onClick={() => setShow(chat)}>{Object.values(chat.users)[1].name}
                   </ Box>
-                  <Divider />
+                  <Divider maxWidth="275px"/>
                 </Box >
+
               ))}
                 <Portal >
                   {show.id && <MessageModal setShow={setShow} ref={ref} chat={show} user={user} />}
@@ -63,9 +66,8 @@ const ChatDrawer = () => {
 
           <DrawerFooter>
             <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
+              Close
               </Button>
-            <Button colorScheme="blue">Save</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
