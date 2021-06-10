@@ -12,7 +12,11 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
-    Avatar
+    Avatar,
+    Heading,
+    Box,
+    Divider,
+    Text
 } from "@chakra-ui/react"
 import { useSelector, useDispatch } from 'react-redux';
 import { RiDeleteBack2Fill as DeleteIcon } from "react-icons/ri";
@@ -22,11 +26,16 @@ import { AiOutlineEnter as SaveIcon } from "react-icons/ai";
 import { TiCancel as CancelIcon } from "react-icons/ti";
 import { authenticate } from '../../store/session';
 import { getChats } from '../../store/chats';
+import { useParams } from 'react-router-dom';
+import "./Messages.css"
+
 
 let socket;
-const MessageModal = ({ user, chat }) => {
-    const currUser = useSelector(state => state.session.user)
+const MessageModal = ({ setShow, chat, user }) => {
+    const { chatId } = useParams()
+    const curruser = useSelector(state => state.session.user)
     const users = useSelector(state => state.users)
+    const chats = useSelector(state => state.chats)
     const messageStore = useSelector(state => state.messages)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [chatInput, setChatInput] = useState("");
@@ -37,10 +46,19 @@ const MessageModal = ({ user, chat }) => {
     const dispatch = useDispatch()
     const messageRef = useRef();
 
+
+    useEffect(() => {
+        onOpen()
+
+    }, [chat])
+
+    const chat1 = chats[chat.id]
+    let otherUser = Object.values(chat1.users).find(el => el.id !== user.id)
+
     useEffect(() => {
         (async () => {
             let fetcheddata = await dispatch(getMessages(chat.id))
-            if(fetcheddata) {
+            if (fetcheddata) {
                 setMessages(Object.values(fetcheddata))
             }
         })()
@@ -52,6 +70,7 @@ const MessageModal = ({ user, chat }) => {
         socket = io();
         // listen for chat events
         socket.on(chat.id, (data) => {
+            console.log("!!! inside socet")
             // when we recieve a chat, add it into our messages array in state
             setMessages(messages => [...messages, data])
         })
@@ -110,10 +129,12 @@ const MessageModal = ({ user, chat }) => {
     }
 
     const messageToEdit = (message) => (e) => {
-        setEditChatInput(message.body)
+        e.preventDefault()
         setEditMessage(true)
+        setEditChatInput(message.body)
         setMessageId(e.target.classList[0])
     }
+
 
     const inputBox = () => {
         return (
@@ -140,15 +161,15 @@ const MessageModal = ({ user, chat }) => {
         return (
             <div className="message__options">
                 {editMessage && Number(messageId) === Number(message.id) ?
-                    <>
-                        <div id="save__icon" onClick={handleEdit(message.id, editChatInput)}><SaveIcon />Save</div>
-                        <div id="cancel__icon" onClick={() => setEditMessage(false)}><CancelIcon />Cancel</div>
-                    </>
+                    <div >
+                        <div id="save__icon" onClick={handleEdit(message.id, editChatInput)}><SaveIcon /></div>
+                        <div id="cancel__icon" onClick={() => setEditMessage(false)}><CancelIcon /></div>
+                    </div>
                     :
-                    <>
-                        <div id="edit__icon" className={`${message?.id} edit__icon`} onClick={messageToEdit(message)}><EditIcon />Edit</div>
-                        <div id="delete__icon" onClick={deleteMessage(message.id)}><DeleteIcon />Delete</div>
-                    </>
+                    <div >
+                        <div id="edit__icon" onClick={messageToEdit(message)} className={`${message?.id} edit__icon`} ><EditIcon />edit</div>
+                        <div id="delete__icon" onClick={deleteMessage(message.id)}><DeleteIcon />del</div>
+                    </div>
                 }
             </div>)
     }
@@ -172,39 +193,46 @@ const MessageModal = ({ user, chat }) => {
 
     return (
         <>
-            <Button onClick={onOpen}>{chat.name}</Button>
+            {/* <Button backgroundColor={"rgb(0, 208, 111)"} onClick={onOpen}>{chat.name}</Button> */}
 
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal maxH="500px" useInert={false} isOpen={isOpen} onClose={() => {
+                onClose()
+                setShow({})
+            }} overflow="auto">
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Modal Title</ModalHeader>
+                    <ModalHeader className="hi" backgroundColor="#92ddb6" >
+                            <Avatar name={otherUser.firstname} src={otherUser.avatar}></Avatar>
+                            <Text fontSize="3lg">{otherUser?.name}</Text>
+                        <Box></Box>
+                    </ModalHeader>
                     <ModalCloseButton />
-                    <ModalBody>
+                    <ModalBody overflow="auto" minH="500px"  maxH="500px" >
                         {messages.map((message, idx) => (
-                            <div key={idx} ref={messageRef} className="message" id={`${message.id}`}>
-                                <div className="message__avatar">
-                                    <Avatar src={users[message?.user_id]?.avatar} alt="" />
-                                </div>
-                                <div className="message__content">
-                                    <h2>
-                                        {users[message?.user_id]?.firstname}
-                                        <span>{format(new Date(message?.created_at), "MMM dd, hh:mm a")}</span>
-                                        {(Number(user.id) === Number(message.user_id)) && loggedUserMsgOptions(message)}
-                                    </h2>
-                                    {editMessage && (Number(messageId) === Number(message.id)) ? (editInputBox(message)) : (<p>{message?.body}
-                                        <span className="content__edited-tag">{(message.created_at !== message.updated_at) && " (edited)"}</span>
+                            <div ref={messageRef} key={idx} className="container">
+                                <div className="message" id={`${message.id}`}>
+                                    <div className="message__avatar">
+                                        <Avatar src={users[message?.user_id]?.avatar} alt="" />
+                                        <div className="message__content">
+                                            <h2 className="quick">
+                                                {users[message?.user_id]?.firstname}
+                                                <br></br>
+                                                <span>{format(new Date(message?.created_at), "MMM dd, hh:mm a")}</span>
+                                            </h2>
+                                            {(Number(user.id) === Number(message.user_id)) && loggedUserMsgOptions(message)}
+                                        </div>
+                                    </div>
+                                    {editMessage && (Number(messageId) === Number(message.id)) ? (editInputBox(message)) : (<p className="msg_body">{message?.body}
+                                        <span className="content__edited-tag">{(message.created_at !== message.updated_at) && <Text as="sub">   (edited)</Text>}</span>
                                     </p>)}
                                 </div>
+                                <Divider></Divider>
                             </div>
                         ))}
                     </ModalBody>
-                    <ModalFooter>
+                    <div>
                         {inputBox()}
-                        <Button colorScheme="blue" mr={3} onClick={onClose}>
-                            Close
-                            </Button>
-                        <Button variant="ghost">Secondary Action</Button>
-                    </ModalFooter>
+                    </div>
                 </ModalContent>
             </Modal>
         </>

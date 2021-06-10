@@ -3,11 +3,14 @@ import { useSelector, useDispatch } from "react-redux"
 import { getChats } from "../../store/chats"
 import {getUsers} from "../../store/users"
 import MapContainer from "./MapsContainer"
+import { Flex, Image } from "@chakra-ui/react"
+import dog1 from "./pugSides.png"
+import "./Main.css"
+
 
 
 
 const Main = () => {
-    const loggedUser = useSelector(state => state.session.user)
     const users = useSelector(state => state.users)
     const dispatch = useDispatch()
 
@@ -16,11 +19,19 @@ const Main = () => {
         dispatch(getChats())
     }, [dispatch])
 
-    return (
-        <div className="map_container">
+        if (users) {
+            return (
+        <Flex className="map_container">
+            <Image maxWidth="410px" src={dog1}></Image>
             <MapContainer />
-        </div>
-    )
+            <Image maxWidth="410px" src={dog1}></Image>
+        </Flex>)
+        }
+        else {
+            return (<div>hello test</div>)
+        }
+
+
 }
 
 

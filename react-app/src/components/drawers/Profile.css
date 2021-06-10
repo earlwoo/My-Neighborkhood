@@ -1,0 +1,28 @@
+
+
+.profile__avatars-individual{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile__bio-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #F7FAFC;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
+    min-width: 312px;
+    border-radius: 5px;
+
+}
+
+
+.petpic{
+    padding-left: 5px;
+}
+
+.userpic{
+    padding-right: 5px;
+}

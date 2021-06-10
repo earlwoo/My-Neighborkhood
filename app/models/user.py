@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
     firstname = db.Column(db.String(50), nullable=False)
     lastname = db.Column(db.String(50), nullable=False)
     address = db.Column(db.String(255), nullable=False, unique=True)
+    location = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     avatar = db.Column(db.String(360))
@@ -54,6 +55,7 @@ class User(db.Model, UserMixin):
             "email": self.email,
             "avatar": self.avatar,
             "address": json.loads(self.address),
+            "location": json.loads(self.location),
             "bio": self.bio,
             "pet": self.pet.to_dict(),
             "chats": {chat.id: chat.to_dict() for chat in self.chats}

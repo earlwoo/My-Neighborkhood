@@ -94,7 +94,7 @@ const SignUpForm = ({setShowSUModal}) => {
             autoComplete="off"
            ></input>
           <select name="state" value={state} onChange={e => setState(e.target.value)} >
-            <option selected disabled>State</option>
+            <option defaultValue>State</option>
             <option value="AL">AL</option>
             <option value="AK">AK</option>
             <option value="AZ">AZ</option>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import {getUsers} from "../store/users"
+import { getUsers } from "../store/users"
 import { login } from "../store/session"
 import LogoutButton from './auth/LogoutButton';
 import LoginFormModal from './auth/LoginFormModal'
@@ -10,6 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from "@chakra-ui/react"
 import ChatDrawer from "./drawers/ChatDrawer"
 import NeighborksDrawer from "./drawers/NeighborksDrawer"
+import ProfileModal from './drawers/ProfileModal';
+import { FaUserAlt } from "react-icons/fa";
+import { getChats } from "../store/chats"
 
 const NavBar = () => {
 
@@ -22,7 +25,8 @@ const NavBar = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     await dispatch(login("demo@aa.io", "password"));
-
+    dispatch(getUsers())
+    dispatch(getChats())
     history.push('/main')
 
   };
@@ -37,10 +41,15 @@ const NavBar = () => {
           <SignUpFormModal />
         </span>
         <span>
-          <Button colorScheme="teal" variant="link" onClick={onLogin}>Demo User</Button>
+          <Button rightIcon={FaUserAlt} colorScheme="teal" onClick={onLogin}>Demo User</Button>
         </span>
       </>
     )
+  }
+
+  const myPage = () => {
+    return <ProfileModal user={user} />
+
   }
 
   const loggedIn = () => {

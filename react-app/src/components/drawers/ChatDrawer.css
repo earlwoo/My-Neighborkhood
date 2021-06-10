@@ -1,0 +1,4 @@
+.chat_drawer{
+    display: flex;
+    flex-direction: column;
+}
