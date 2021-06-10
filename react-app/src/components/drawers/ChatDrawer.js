@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Avatar, Button, Divider, Input, space, useDisclosure} from "@chakra-ui/react"
+import { Avatar, Button, Divider, Input, space, useDisclosure, IconButton} from "@chakra-ui/react"
 import {
   Drawer,
   DrawerBody,
@@ -16,6 +16,8 @@ import { useSelector } from 'react-redux';
 import MessageModal from "./MessageModal"
 import { Portal } from "@chakra-ui/react"
 import { NavLink } from 'react-router-dom';
+import {BsChatFill} from "react-icons/bs"
+import "./ChatDrawer.css"
 
 const ChatDrawer = () => {
   const ref = useRef()
@@ -28,9 +30,14 @@ const ChatDrawer = () => {
 
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
-        Chats
-        </Button>
+      <IconButton aria-label="Users"
+            icon={<BsChatFill fontSize="35"/>}
+            variant="ghost" onClick={onOpen}
+            _hover={{ bg: "#B4F8C8" }}
+            onClick={onOpen}
+            padding="1"
+            >
+      </IconButton>
       <Drawer
         isOpen={isOpen}
         placement="right"
@@ -42,13 +49,18 @@ const ChatDrawer = () => {
       >
         <DrawerOverlay />
         <DrawerContent>
+          <div>
+
           <DrawerCloseButton />
+          </div>
           <DrawerHeader backgroundColor="#92ddb6">Chat With Your Neighborks</DrawerHeader>
 
           <DrawerBody className="chat_drawer">
             <Flex flexDirection="column" alignItems="flex-start">
               {Object.values(chats).map(chat => (
-                <Box as="button" onClick={() => setShow(chat)} fontWeight="semibold"
+                <Box as="button" onClick={() => setShow(chat)}
+                key={chat.id}
+                fontWeight="semibold"
                 letterSpacing="wide"
                 fontSize="xs" marginBottom="10px" padding="10px" >
                   <Avatar src={Object.values(chat.users)[1].avatar}></Avatar>

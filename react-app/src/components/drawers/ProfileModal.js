@@ -18,10 +18,14 @@ import {
 } from "@chakra-ui/react"
 import { useSelector } from 'react-redux';
 import "./Profile.css"
+import { AiFillEdit as EditIcon } from "react-icons/ai";
 
 const ProfileModal = ({ setProf, user }) => {
     const loggedUser = useSelector(state => state.session.user)
     const [myProf, setmyProf] = useState(false)
+    const [editMe, setEditMe] = useState(false)
+    const [editPet, setEditPet] = useState(false)
+    const [bioText, setBioText] = useState('')
     const { isOpen, onOpen, onClose } = useDisclosure()
     // const users = useSelector(state => state.users)
 
@@ -29,9 +33,21 @@ const ProfileModal = ({ setProf, user }) => {
 
     useEffect(() => {
         onOpen()
+        if (user.id === loggedUser.id) { setmyProf(true) }
     }, [user])
 
-    if (user.id === loggedUser.id) { setmyProf(true) }
+    const messageToEdit = () => {
+
+    }
+
+    const profEdit = () => {
+
+        return (
+            <div id="edit__icon" onClick={() => (setEditMe(true))} className={`${message?.id} edit__icon`} ><EditIcon />edit</div>
+
+        )
+    }
+
 
     return (
         <>
@@ -51,7 +67,6 @@ const ProfileModal = ({ setProf, user }) => {
                             <Flex alignItems="center" minW="md" borderWidth="1px" borderRadius="lg" overflow="hidden">
                                 <div className="profile__avatars-individual userpic" >
                                     <Avatar size="2xl" name={user.firstname} src={user.avatar} />
-                                        {myProf && <div>mine</div>}
                                 </div>
                                 <div className="profile__bio-container" >
                                     <ModalHeader textAlign="center" fontSize="20" fontWeight="bolder"  minHeight="100%" minWidth="100%" borderRadius="lg" >{user.firstname} {user.lastname}</ModalHeader>
@@ -61,6 +76,7 @@ const ProfileModal = ({ setProf, user }) => {
                                     <Divider />
                                     <Text fontSize="14" color="#92ddb6" as="u" fontWeight="semibold" >About</Text>
                                     <Text textAlign="center" maxInlineSize="255"  fontWeight="semibold">{user.bio}</Text>
+                                    {/* make edit input for user */}
                                 </div>
                             </Flex>
                         </div>
@@ -73,8 +89,9 @@ const ProfileModal = ({ setProf, user }) => {
                                     <Text fontSize="14" color="#92ddb6" as="u" fontWeight="semibold" >Age</Text>
                                     <Text fontWeight="bold" >{pet.age}</Text>
                                     <Divider />
-                                    <Text fontSize="14" color="#92ddb6" as="u" fontWeight="semibold" >About</Text>
+                                    <Text fontSize="14" color="#92ddb6" as="u" fontWeight="semibold" >About  </Text>
                                     <Text textAlign="center" fontWeight="semibold" >{pet.bio}</Text>
+                                    {/* make edit input for user */}
 
                                 </div>
                                 <div className="profile__avatars-individual petpic" >
