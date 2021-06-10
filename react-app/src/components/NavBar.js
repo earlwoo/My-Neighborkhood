@@ -7,12 +7,17 @@ import LoginFormModal from './auth/LoginFormModal'
 import SignUpFormModal from './auth/SignUpFormModal'
 import "./NavBar.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from "@chakra-ui/react"
+import { Button, Container, Flex, IconButton } from "@chakra-ui/react"
 import ChatDrawer from "./drawers/ChatDrawer"
 import NeighborksDrawer from "./drawers/NeighborksDrawer"
 import ProfileModal from './drawers/ProfileModal';
 import { FaUserAlt } from "react-icons/fa";
 import { getChats } from "../store/chats"
+import { PhoneIcon, AddIcon, WarningIcon, ChatIcon } from '@chakra-ui/icons'
+import { GiDogHouse } from "react-icons/gi";
+import { FaUsers } from "react-icons/fa"
+import {BsChatFill} from "react-icons/bs"
+import { icons } from 'react-icons/lib';
 
 const NavBar = () => {
 
@@ -56,9 +61,11 @@ const NavBar = () => {
     return (
       <>
         <span>
+          <FaUsers />
           <NeighborksDrawer />
         </span>
         <span>
+        <BsChatFill />
           <ChatDrawer />
         </span>
         <span>
@@ -69,15 +76,17 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="navbar-container">
-      <span>
-        <NavLink to="/" exact={true} activeClassName="active">
-          <Button>Home</Button>
-        </NavLink>
-      </span>
-      {user ? loggedIn() : noUser()}
+    <Container border="1px" backgroundColor="white" minWidth="100%" minHeight="50">
+      <Flex minW="100%" justifyContent="space-evenly">
+          <span>
 
-    </nav>
+            <NavLink to="/" exact={true} activeClassName="active">
+              <GiDogHouse id="house" />
+            </NavLink>
+          </span>
+          {user ? loggedIn() : noUser()}
+      </Flex>
+    </Container>
   );
 }
 

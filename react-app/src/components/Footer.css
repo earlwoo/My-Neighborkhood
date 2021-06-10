@@ -1,5 +1,5 @@
 .footer__container {
-    height: 10%;
+    height: 55px;
     position: sticky;
     background-color: white;
     /* background-color: #4a154b; */
@@ -10,6 +10,7 @@
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
+    border-top: 1px solid;
 }
 
 .footer__links {
