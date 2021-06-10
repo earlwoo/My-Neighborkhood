@@ -51,9 +51,9 @@ const MapsUserInfo = ({ selected }) => {
                         <Avatar size="lg" name={selected.firstname} src={selected.avatar} />
                         <Avatar size="lg" name={selected.pet.name} src={selected.pet.image} />
                     </AvatarGroup>
-                    <Text fontSize="14" fontWeight="semibold">{selected.firstname} {selected.lastname}</Text>
-                    <Text fontSize="14" fontWeight="semibold">&</Text>
-                    <Text fontSize="14" fontWeight="semibold">{selected.pet.name}</Text>
+                    <Text fontSize="15" fontWeight="semibold">{selected.firstname} & {selected.pet.name}</Text>
+                    {/* <Text fontSize="12" fontWeight="semibold">&</Text>
+                    <Text alignSelf="flex-end" fontSize="14" fontWeight="semibold">{selected.pet.name}</Text> */}
 
                 </Flex>
                 <Divider />

@@ -43,7 +43,7 @@ const ProfileModal = ({ setProf, user }) => {
             }}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader backgroundColor={"rgb(0, 208, 111)"} >{myProf ? "My Profile" : `My Neighbork ${user.firstname}`}</ModalHeader>
+                    <ModalHeader backgroundColor="#92ddb6" >{myProf ? "My Profile" : `My Neighbork ${user.firstname}`}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
                         <Flex flexDirection="column" alignItems="center">
@@ -56,10 +56,10 @@ const ProfileModal = ({ setProf, user }) => {
                                 <div className="profile__bio-container" >
                                     <ModalHeader textAlign="center" fontSize="20" fontWeight="bolder"  minHeight="100%" minWidth="100%" borderRadius="lg" >{user.firstname} {user.lastname}</ModalHeader>
                                     <Divider />
-                                    <Text fontSize="14" color={"rgb(0, 208, 111)"} as="u" fontWeight="semibold" >Email</Text>
+                                    <Text fontSize="14" color="#92ddb6" as="u" fontWeight="semibold" >Email</Text>
                                     <Text fontSize="12" fontWeight="bold">{user.email}</Text>
                                     <Divider />
-                                    <Text fontSize="14" color={"rgb(0, 208, 111)"} as="u" fontWeight="semibold" >About</Text>
+                                    <Text fontSize="14" color="#92ddb6" as="u" fontWeight="semibold" >About</Text>
                                     <Text textAlign="center" maxInlineSize="255"  fontWeight="semibold">{user.bio}</Text>
                                 </div>
                             </Flex>
@@ -70,10 +70,10 @@ const ProfileModal = ({ setProf, user }) => {
                                 <div className="profile__bio-container" >
                                     <ModalHeader textAlign="center" fontSize="20" fontWeight="bolder"  minHeight="100%" minWidth="100%" borderRadius="lg" >{pet.name}</ModalHeader>
                                     <Divider />
-                                    <Text fontSize="14" color={"rgb(0, 208, 111)"} as="u" fontWeight="semibold" >Age</Text>
+                                    <Text fontSize="14" color="#92ddb6" as="u" fontWeight="semibold" >Age</Text>
                                     <Text fontWeight="bold" >{pet.age}</Text>
                                     <Divider />
-                                    <Text fontSize="14" color={"rgb(0, 208, 111)"} as="u" fontWeight="semibold" >About</Text>
+                                    <Text fontSize="14" color="#92ddb6" as="u" fontWeight="semibold" >About</Text>
                                     <Text textAlign="center" fontWeight="semibold" >{pet.bio}</Text>
 
                                 </div>

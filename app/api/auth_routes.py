@@ -63,6 +63,7 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print(form.data)
         user = User(
             firstname=form.data['firstname'],
             lastname=form.data['firstname'],
@@ -74,27 +75,22 @@ def sign_up():
                 "state": form.data['state'],
                 "zip": form.data['zip']
             }),
+            location=json.dumps(form.data['location'])
         )
         db.session.add(user)
         db.session.commit()
 
-        new_user = User.query.filter(User.email == form.data['email']).first()
-
-        new_user_dict = new_user.to_dict()
-
         pet = Pet(
-            owner_id=new_user_dict['id'],
+            owner_id=user.id,
             name=form.data['name'],
             age=int(form.data['age'])
         )
-
         db.session.add(pet)
         db.session.commit()
 
-        global_chat = Chat.query.get(1)
-        global_chat.users.append(new_user)
+        new_user_dict = user.to_dict()
 
-        login_user(new_user)
+        login_user(user)
         return new_user_dict
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

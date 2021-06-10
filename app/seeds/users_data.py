@@ -32,6 +32,7 @@ def seed_users():
         email='demo@aa.io',
         password='password',
         address=json.dumps({'street': '2019 S. Bouvier St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.925900, 'lng': -75.175240}),
         avatar='https://slackx.s3.amazonaws.com/kimi.png'
     )
     demo2 = User(
@@ -41,6 +42,7 @@ def seed_users():
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1922 Lambert St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.927720, 'lng': -75.180290}),
         avatar=seed_pic[0]
     )
     demo3 = User(
@@ -50,6 +52,7 @@ def seed_users():
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '2239 Moore St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.929891, 'lng': -75.182606}),
         avatar=seed_pic[1]
     )
     demo4 = User(
@@ -59,6 +62,7 @@ def seed_users():
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1811 McKean St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.926620, 'lng': -75.176170}),
         avatar=seed_pic[2]
     )
     demo5 = User(
@@ -68,6 +72,7 @@ def seed_users():
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1732 Wolf St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.922581, 'lng': -75.176281}),
         avatar=seed_pic[3]
     )
     demo6 = User(
@@ -77,6 +82,7 @@ def seed_users():
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1532 McKean St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.925844, 'lng': -75.171958}),
         avatar=seed_pic[4]
     )
     demo7 = User(
@@ -86,6 +92,7 @@ def seed_users():
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '2031 S Bancroft St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.925652, 'lng': -75.173234}),
         avatar=seed_pic[5]
     )
     demo8 = User(
@@ -95,6 +102,7 @@ def seed_users():
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '17116 Snyder Ave','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.925196, 'lng': -75.176093}),
         avatar=seed_pic[6]
     )
     demo9 = User(
@@ -104,6 +112,7 @@ def seed_users():
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '2122 Dorrance St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.928394, 'lng': -75.177304}),
         avatar=seed_pic[7]
     )
     demo10 = User(
@@ -113,6 +122,7 @@ def seed_users():
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '2044 S Garnet St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.926144, 'lng': -75.178177}),
         avatar=seed_pic[8]
     )
     demo11 = User(
@@ -122,6 +132,7 @@ def seed_users():
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1822 Dudley St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.926830, 'lng': -75.176197}),
         avatar=seed_pic[9]
     )
     demo12 = User(
@@ -131,6 +142,7 @@ def seed_users():
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1711 Sigel St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.927991, 'lng':  -75.174175}),
         avatar=seed_pic[10]
     )
     demo13 = User(
@@ -140,6 +152,7 @@ def seed_users():
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1946 S Chadwick St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.926795, 'lng': -75.173659}),
         avatar=seed_pic[11]
     )
     demo14 = User(
@@ -149,6 +162,7 @@ def seed_users():
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1713 McKean St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.926344, 'lng': -75.174638}),
         avatar=seed_pic[12]
     )
     demo15 = User(
@@ -158,6 +172,7 @@ def seed_users():
         email=fake.email(),
         password='password',
         address=json.dumps({'street': '1700 Jackson St.','zip': '19145','city': 'Philadelphia', 'state': 'PA'}),
+        location=json.dumps({'lat': 39.923696, 'lng': -75.174964}),
         avatar=seed_pic[13]
     )
 

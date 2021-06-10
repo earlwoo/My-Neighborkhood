@@ -33,17 +33,8 @@ export const authenticate = () => async (dispatch) => {
         return;
       }
 
-      Geocode.fromAddress(`${data.address.street} ${data.address.city} ${data.address.state} ${data.address.zip}`).then(
-        (response) => {
-            const { lat, lng } = response.results[0].geometry.location;
-
-            data.location = {lat, lng}
-        },
-        (error) => {
-            console.error(error);
-        }
-      ).then(()=>{dispatch(setUser(data))}).catch((e)=> console.log(e));
-        return data
+      dispatch(setUser(data))
+      return data
 
     } catch (err) {
       console.log(err)
@@ -68,16 +59,7 @@ export const authenticate = () => async (dispatch) => {
         return data;
     }
 
-    Geocode.fromAddress(`${data.address.street} ${data.address.city} ${data.address.state} ${data.address.zip}`).then(
-      (response) => {
-          const { lat, lng } = response.results[0].geometry.location;
-
-          data.location = {lat, lng}
-      },
-      (error) => {
-          console.error(error);
-      }
-    ).then(()=>{dispatch(setUser(data))}).catch((e)=> console.log(e));
+    dispatch(setUser(data))
     // if (data.location) {dispatch(setUser(data))}
 
     return data;
@@ -98,6 +80,17 @@ export const authenticate = () => async (dispatch) => {
 
 
   export const signUp = (firstname, lastname, email, password, street, city, state, zip, age, name) => async (dispatch)  => {
+
+    let location;
+
+    const res = await Geocode.fromAddress(`${street} ${city} ${state}, ${zip}`)
+        // if(!res.ok) throw res
+        const { lat, lng } = await res.results[0].geometry.location;
+        location = {lat, lng}
+
+    console.log("!!!!", location)
+
+
     const response = await fetch("/api/auth/signup", {
       method: "POST",
       headers: {
@@ -109,6 +102,7 @@ export const authenticate = () => async (dispatch) => {
         email,
         password,
         street, city, state, zip,
+        location,
         age,
         name
       }),
@@ -122,18 +116,9 @@ export const authenticate = () => async (dispatch) => {
         return data;
       }
 
-      Geocode.fromAddress(`${data.address.street} ${data.address.city} ${data.address.state} ${data.address.zip}`).then(
-        (response) => {
-            const { lat, lng } = response.results[0].geometry.location;
+      dispatch(setUser(data))
 
-            data.location = {lat, lng}
-        },
-        (error) => {
-            console.error(error);
-        }
-      ).then(()=>{dispatch(setUser(data))}).catch((e)=> console.log(e));
-
-        return data
+      return data
 
     } catch(err){
       console.log(err)

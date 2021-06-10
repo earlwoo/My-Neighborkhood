@@ -201,7 +201,7 @@ const MessageModal = ({ setShow, chat, user }) => {
             }} overflow="auto">
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader className="hi" backgroundColor={"rgb(0, 208, 111)"} >
+                    <ModalHeader className="hi" backgroundColor="#92ddb6" >
                             <Avatar name={otherUser.firstname} src={otherUser.avatar}></Avatar>
                             <Text fontSize="3lg">{otherUser?.name}</Text>
                         <Box></Box>

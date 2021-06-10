@@ -38,7 +38,7 @@ const NeighborksDrawer = () => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader backgroundColor="rgb(0, 208, 111)">Your Neigborkhood</DrawerHeader>
+          <DrawerHeader backgroundColor="#92ddb6">Your Neigborkhood</DrawerHeader>
 
           <DrawerBody>
             {usersArr.map(user => {
