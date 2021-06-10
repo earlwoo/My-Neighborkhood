@@ -3,7 +3,6 @@ from .users_data import seed_users, undo_users
 from .pets_data import seed_pets, undo_pets
 from .chats_data import seed_chats, undo_chats
 from .messages_data import seed_messages, undo_messages
-from .user_chats_data import seed_user_chats, undo_user_chats
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -15,7 +14,6 @@ def seed():
     seed_users()
     seed_pets()
     seed_chats()
-    seed_user_chats()
     seed_messages()
     # Add other seed functions here
 
@@ -25,6 +23,5 @@ def undo():
     undo_users()
     undo_pets()
     undo_chats()
-    seed_user_chats()
     undo_messages()
     # Add other undo functions here

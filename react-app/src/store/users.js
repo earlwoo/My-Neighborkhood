@@ -19,17 +19,24 @@ export const getUsers = () => async (dispatch) => {
         const users = await res.json()
 
         //finding lat lng coordinates from address
+
         for (let user in users) {
-            Geocode.fromAddress(`${users[user].address.street} ${users[user].address.city} ${users[user].address.state} ${users[user].address.zip}`).then(
-                (response) => {
-                    const { lat, lng } = response.results[0].geometry.location;
-                    users[user].location = {lat, lng}
-                },
-                (error) => {
-                    console.error(error);
-                }
-            ).then(()=>{dispatch(setUsers(users))}).catch((e)=> console.log(e));;
+
+            const res = await Geocode.fromAddress(`${users[user].address.street} ${users[user].address.city} ${users[user].address.state} ${users[user].address.zip}`)
+            try{
+                // if(!res.ok) throw res
+
+                const { lat, lng } = await res.results[0].geometry.location;
+
+                users[user].location = {lat, lng}
+            }catch(err) {
+                console.log(err)
+            }
+
+
         }
+        
+        dispatch(setUsers(users))
 
     } catch(error) {
         console.log(error)

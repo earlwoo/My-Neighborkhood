@@ -57,18 +57,18 @@
 } */
 
 #edit__icon:hover {
-    background-color: #24a0ed;
+    background-color: rgb(0, 208, 111);
     color: white;
 }
 
 #save__icon:hover {
-    background-color: #007A5A;
+    background-color: rgb(0, 208, 111);
     color: white;
 }
 
 #delete__icon:hover,
 #cancel__icon:hover {
-    background-color: #ff4040;
+    background-color: rgb(0, 208, 111);
     color: white;
 }
 
@@ -123,4 +123,9 @@
 
 .hi{
     display: flex;
+}
+
+
+.hh{
+    background-color: rgb(0, 208, 111);
 }

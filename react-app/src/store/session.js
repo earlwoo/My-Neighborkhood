@@ -33,7 +33,17 @@ export const authenticate = () => async (dispatch) => {
         return;
       }
 
-      dispatch(setUser(data))
+      Geocode.fromAddress(`${data.address.street} ${data.address.city} ${data.address.state} ${data.address.zip}`).then(
+        (response) => {
+            const { lat, lng } = response.results[0].geometry.location;
+
+            data.location = {lat, lng}
+        },
+        (error) => {
+            console.error(error);
+        }
+      ).then(()=>{dispatch(setUser(data))}).catch((e)=> console.log(e));
+        return data
 
     } catch (err) {
       console.log(err)
@@ -83,6 +93,7 @@ export const authenticate = () => async (dispatch) => {
 
     const data = await response.json();
     dispatch(removeUser());
+    return data
   };
 
 
@@ -110,8 +121,19 @@ export const authenticate = () => async (dispatch) => {
       if (data.errors) {
         return data;
       }
-      dispatch(setUser(data))
 
+      Geocode.fromAddress(`${data.address.street} ${data.address.city} ${data.address.state} ${data.address.zip}`).then(
+        (response) => {
+            const { lat, lng } = response.results[0].geometry.location;
+
+            data.location = {lat, lng}
+        },
+        (error) => {
+            console.error(error);
+        }
+      ).then(()=>{dispatch(setUser(data))}).catch((e)=> console.log(e));
+
+        return data
 
     } catch(err){
       console.log(err)

@@ -7,7 +7,6 @@ import MapContainer from "./MapsContainer"
 
 
 const Main = () => {
-    const loggedUser = useSelector(state => state.session.user)
     const users = useSelector(state => state.users)
     const dispatch = useDispatch()
 
@@ -15,12 +14,18 @@ const Main = () => {
         dispatch(getUsers());
         dispatch(getChats())
     }, [dispatch])
+    // dispatch(getChats())
 
-    return (
-        <div className="map_container">
+        if (users) {
+            return (<div className="map_container">
             <MapContainer />
-        </div>
-    )
+        </div>)
+        }
+        else {
+            return (<div>hello test</div>)
+        }
+
+
 }
 
 

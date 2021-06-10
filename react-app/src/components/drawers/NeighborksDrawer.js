@@ -27,7 +27,7 @@ const NeighborksDrawer = () => {
     <>
       <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
         Neighborks
-        </Button>
+      </Button>
       <Drawer
         isOpen={isOpen}
         placement="left"
@@ -44,7 +44,7 @@ const NeighborksDrawer = () => {
             {usersArr.map(user => {
               if(user.id !== loggedUser.id) {
                 return (
-                  <Flex flexDirection="column" alignItems="flex-end" >
+                  <Flex key={user.id} flexDirection="column" alignItems="flex-end" >
                     <Flex paddingBottom="2" paddingTop="2" justifyContent="space-between" alignItems="center" flexDirection="row" as="button" onClick={()=>{setProf(user)}} >
                       <AvatarGroup size="lg" max={2}>
                         <Avatar name={user.firstname} src={user.avatar} />

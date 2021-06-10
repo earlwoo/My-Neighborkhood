@@ -12,6 +12,7 @@ import ChatDrawer from "./drawers/ChatDrawer"
 import NeighborksDrawer from "./drawers/NeighborksDrawer"
 import ProfileModal from './drawers/ProfileModal';
 import { FaUserAlt } from "react-icons/fa";
+import { getChats } from "../store/chats"
 
 const NavBar = () => {
 
@@ -24,7 +25,8 @@ const NavBar = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     await dispatch(login("demo@aa.io", "password"));
-
+    dispatch(getUsers())
+    dispatch(getChats())
     history.push('/main')
 
   };

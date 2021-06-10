@@ -207,7 +207,7 @@ const MessageModal = ({ setShow, chat, user }) => {
                         <Box></Box>
                     </ModalHeader>
                     <ModalCloseButton />
-                    <ModalBody overflow="auto" maxH="500px" >
+                    <ModalBody overflow="auto" minH="500px"  maxH="500px" >
                         {messages.map((message, idx) => (
                             <div ref={messageRef} key={idx} className="container">
                                 <div className="message" id={`${message.id}`}>
