@@ -65,7 +65,7 @@ const MapsUserInfo = ({ selected }) => {
                 <Flex paddingTop="2" justifyContent="flex-end">
                     <Box variant="outline" as="button"     onClick={() => setShow(findChat)} fontWeight="semibold"
                     letterSpacing="wide"
-                    backgroundColor="rgb(0, 208, 111)"
+                    backgroundColor="#92ddb6"
                     padding="1"
                     borderRadius="4"
                     textAlign="right"
@@ -78,7 +78,7 @@ const MapsUserInfo = ({ selected }) => {
                         : <Flex paddingTop="2" justifyContent="flex-end">
                             <Box variant="outline" as="button" onClick={handleCreate} fontWeight="semibold"
                             letterSpacing="wide"
-                            backgroundColor="rgb(0, 208, 111)"
+                            backgroundColor="#92ddb6"
                             padding="1"
                             borderRadius="4"
                             textAlign="right"

@@ -43,7 +43,7 @@ const ChatDrawer = () => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader backgroundColor="rgb(0, 208, 111)">Chat With Your Neighborks</DrawerHeader>
+          <DrawerHeader backgroundColor="#92ddb6">Chat With Your Neighborks</DrawerHeader>
 
           <DrawerBody className="chat_drawer">
             <Flex flexDirection="column" alignItems="flex-start">

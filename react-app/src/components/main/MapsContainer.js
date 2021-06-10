@@ -3,12 +3,12 @@ import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-map
 import { useSelector } from 'react-redux';
 import MapsUserInfo from './MapsUserInfo'
 import dog from "./dog.png"
-import { Portal } from '@chakra-ui/portal';
-
+import { Portal  } from '@chakra-ui/portal';
+import { Flex } from "@chakra-ui/react"
 
 const mapStyles = {
-    height: "75vh",
-    width: "90%"
+    height: "87vh",
+    width: "100%"
 };
 
 const MapContainer = () => {
@@ -24,10 +24,12 @@ const MapContainer = () => {
     })
 
     const renderMap = () => {
-        
+
         return (
             <>
                 {(curruser.location && Object.values(users).length) && <GoogleMap
+                    position="static"
+                    zIndex="1"
                     mapContainerStyle={mapStyles}
                     zoom={16}
                     center={curruser.location}

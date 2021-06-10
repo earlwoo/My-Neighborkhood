@@ -8,10 +8,10 @@ import dog from "./main/dog.png"
 const Footer = () => {
     return (
         <div className="footer__container">
-            <img src={dog} ></img>
-            <div>My Neighborkhood</div>
             <div className="footer__links">
-                <div className="footer__letters letter__e">Earl Woo</div>
+                <div className="footer__letters letter__e">
+                <a href="https://github.com/earlwoo">Earl Woo
+                    </a></div>
 
                 <a href="https://github.com/earlwoo/My-Neighborkhood">
                     <FaGithub id="github" />
@@ -20,6 +20,8 @@ const Footer = () => {
                     <FaLinkedin id="github" />
                 </a>
             </div>
+            <img className="bork" src={dog} ></img>
+            <div className="title">© 2021 My Neighborkhood. No rights reserved.</div>
         </div>
     )
 
