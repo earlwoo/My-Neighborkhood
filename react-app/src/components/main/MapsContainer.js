@@ -7,7 +7,7 @@ import { Portal  } from '@chakra-ui/portal';
 import { Text, Flex } from "@chakra-ui/react"
 
 const mapStyles = {
-    height: "87vh",
+    height: "88.5vh",
     width: "100%"
 };
 
@@ -27,7 +27,6 @@ const MapContainer = () => {
 
         return (
             <>
-
                 {(curruser.location && Object.values(users).length) && <GoogleMap
                     position="static"
                     zIndex="1"

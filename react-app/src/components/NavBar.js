@@ -7,7 +7,7 @@ import LoginFormModal from './auth/LoginFormModal'
 import SignUpFormModal from './auth/SignUpFormModal'
 import "./NavBar.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Container, Flex, IconButton } from "@chakra-ui/react"
+import { Button, Container, Flex, IconButton, Text } from "@chakra-ui/react"
 import ChatDrawer from "./drawers/ChatDrawer"
 import NeighborksDrawer from "./drawers/NeighborksDrawer"
 import ProfileModal from './drawers/ProfileModal';
@@ -56,7 +56,7 @@ const NavBar = () => {
 
   const noUser = () => {
     return (
-      <>
+      <Flex minWidth="250" alignItems="center" justifyContent="space-evenly">
         <span>
           <LoginFormModal />
         </span>
@@ -64,15 +64,10 @@ const NavBar = () => {
           <SignUpFormModal />
         </span>
         <span>
-          <Button rightIcon={<FaUserAlt />} colorScheme="teal" onClick={onLogin}>Demo User</Button>
+          <Button leftIcon={<FaUserAlt />} colorScheme="teal" onClick={onLogin}>Demo</Button>
         </span>
-      </>
+      </Flex>
     )
-  }
-
-  const myPage = () => {
-    return <ProfileModal user={user} />
-
   }
 
   const loggedIn = () => {
@@ -106,8 +101,8 @@ const NavBar = () => {
 
   return (
     <Container border="1px" backgroundColor="white" minWidth="100%" minHeight="50">
-      <Flex alignItems="center" minW="100%" justifyContent="space-evenly">
-        <span>
+      <Flex alignItems="center" minW="100%" justifyContent="space-between">
+
         <IconButton aria-label="Users"
             icon={<GiDogHouse fontSize="35"/>}
             variant="ghost"
@@ -117,8 +112,10 @@ const NavBar = () => {
               history.push("/main")
             }}
             >
-      </IconButton>
-        </span>
+        </IconButton>
+        <Text fontWeight="bold" fontSize="xl">
+            My Neighborkhood
+        </Text>
         {user ? loggedIn() : noUser()}
       </Flex>
     </Container>
