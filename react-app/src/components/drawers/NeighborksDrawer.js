@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button, Divider, Flex, Input, useDisclosure} from "@chakra-ui/react"
+import { Button, Divider, Flex, IconButton, Input, useDisclosure} from "@chakra-ui/react"
 import {
   Drawer,
   Avatar,
@@ -13,6 +13,9 @@ import {
 } from "@chakra-ui/react"
 import { useSelector } from 'react-redux';
 import ProfileModal from './ProfileModal';
+import { FaUsers } from "react-icons/fa"
+import "./NeighborksDrawer.css"
+import { PhoneIcon, AddIcon, WarningIcon, ChatIcon, HamburgerIcon, ExternalLinkIcon, RepeatClockIcon, RepeatIcon, EditIcon, CloseIcon } from '@chakra-ui/icons'
 
 const NeighborksDrawer = () => {
   const loggedUser = useSelector(state=> state.session.user)
@@ -25,9 +28,17 @@ const NeighborksDrawer = () => {
 
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
-        Neighborks
-      </Button>
+      <IconButton aria-label="Users"
+            icon={<FaUsers fontSize="35"/>}
+            variant="ghost" ref={btnRef} onClick={onOpen}
+            _hover={{ bg: "#FFAEBC" }}
+            padding="1"
+            >
+
+      </IconButton>
+      {/* <div class="neighborks__drawer--icon" ref={btnRef} onClick={onOpen}>
+        <FaUsers />
+      </div> */}
       <Drawer
         isOpen={isOpen}
         placement="left"
@@ -52,7 +63,7 @@ const NeighborksDrawer = () => {
                       </AvatarGroup>
                       <Box fontWeight="semibold" >{user.firstname} & {user.pet.name}</Box>
                     </Flex>
-                    <Divider pas></Divider>
+                    <Divider ></Divider>
                   </Flex>
                 )
               }})}

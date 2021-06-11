@@ -1,3 +1,5 @@
 .map_container{
     box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
+    min-height: 88.5vh;
+    overflow: hidden;
 }

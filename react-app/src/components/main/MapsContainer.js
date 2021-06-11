@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import MapsUserInfo from './MapsUserInfo'
 import dog from "./dog.png"
 import { Portal  } from '@chakra-ui/portal';
-import { Flex } from "@chakra-ui/react"
+import { Text, Flex } from "@chakra-ui/react"
 
 const mapStyles = {
-    height: "87vh",
+    height: "88.5vh",
     width: "100%"
 };
 

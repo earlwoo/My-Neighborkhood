@@ -34,7 +34,7 @@
     width: 80%;
 }
 
-#edit__icon,
+#edit__icon.edit__icon,
 #delete__icon,
 #save__icon,
 #cancel__icon {
@@ -118,6 +118,7 @@
 
 .send__button{
     opacity: .2;
+    padding-left: 10px;
 }
 
 

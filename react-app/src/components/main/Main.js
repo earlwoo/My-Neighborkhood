@@ -22,9 +22,9 @@ const Main = () => {
         if (users) {
             return (
         <Flex className="map_container">
-            <Image maxWidth="410px" src={dog1}></Image>
+            <Image borderRight="1px" maxWidth="410px" src={dog1}></Image>
             <MapContainer />
-            <Image maxWidth="410px" src={dog1}></Image>
+            <Image borderLeft="1px" maxWidth="410px" src={dog1}></Image>
         </Flex>)
         }
         else {

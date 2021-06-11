@@ -89,6 +89,7 @@ This is the backend for the Flask React project.
 9. set up your database:
 
    ```bash
+   <!-- heroku run -a my-neighborkhood flask seed undo -->
    heroku run -a my-neighborkhood flask db upgrade
    heroku run -a my-neighborkhood flask seed all
    ```

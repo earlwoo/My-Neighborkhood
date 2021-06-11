@@ -5,7 +5,7 @@ fake = Faker()
 
 def seed_messages():
 
-    for i in range(6):
+    for i in range(7):
         for j in range(3):
             myMsg = Message(
                 user_id = 1,
