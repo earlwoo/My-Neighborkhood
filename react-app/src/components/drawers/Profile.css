@@ -26,3 +26,9 @@
 .userpic{
     padding-right: 5px;
 }
+
+#edit__icon {
+    align-self: flex-end;
+    padding-bottom: 2px;
+    font-size: 17px;
+}

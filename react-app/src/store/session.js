@@ -17,7 +17,39 @@ const removeUser = () => ({
     type: REMOVE_USER,
 })
 
-const initialState = { user: null };
+export const editMyBio = (bio, id) => async (dispatch) => {
+  const res = await fetch(`/api/users/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      bio
+    })
+  })
+
+  try{
+    if(!res.ok) throw res
+    const data = res.json()
+    dispatch(setUser(data))
+    return data
+  } catch(err) {
+    console.log(err)
+  }
+}
+
+export const editMyPet = (bio, id) => async (dispatch) => {
+  const res = await fetch(`/api/users/pet`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      bio,
+      pet_id: id
+    })
+  })
+}
 
 export const authenticate = () => async (dispatch) => {
     const response = await fetch('/api/auth/',{
@@ -124,6 +156,8 @@ export const authenticate = () => async (dispatch) => {
       console.log(err)
     }
   }
+
+const initialState = { user: null };
 
 export default function reducer(state=initialState, action) {
     switch (action.type) {
