@@ -31,8 +31,6 @@ const ProfileModal = ({ setProf, user }) => {
     const [editMe, setEditMe] = useState(false)
     const [editPet, setEditPet] = useState(false)
     const [bioText, setBioText] = useState('')
-    const [myEdit, setMyEdit] = useState('')
-    const [myPetEdit, setMyPetEdit] = useState('')
     const { isOpen, onOpen, onClose } = useDisclosure()
     const dispatch = useDispatch()
     // const users = useSelector(state => state.users)
@@ -50,7 +48,7 @@ const ProfileModal = ({ setProf, user }) => {
             <Flex>
                  <div id="save__icon" onClick={sendMyEdit}><SaveIcon />Save</div>
                  <div id="cancel__icon" onClick={() => {
-                     setMyEdit('')
+                     setBioText('')
                      setEditMe(false)
                  }}><CancelIcon />Cancel</div>
              </Flex>
@@ -71,7 +69,7 @@ const ProfileModal = ({ setProf, user }) => {
            <Flex>
                 <div id="save__icon" onClick={sendMyPetEdit}><SaveIcon />Save</div>
                 <div id="cancel__icon" onClick={() => {
-                    setMyPetEdit('')
+                    setBioText('')
                     setEditPet(false)
                 }}><CancelIcon />Cancel</div>
             </Flex>
@@ -86,18 +84,16 @@ const ProfileModal = ({ setProf, user }) => {
         )
     }
 
-    const sendMyEdit = () => {
-
+    const sendMyEdit = (e) => {
+        e.preventDefault()
         dispatch(editMyBio(bioText, loggedUser.id))
         setEditMe(false)
-        setMyEdit('')
     }
 
-    const sendMyPetEdit = () => {
-        
-        dispatch(editMyPet(bioText, pet.id))
+    const sendMyPetEdit = (e) => {
+
+        dispatch(editMyPet(bioText, loggedUser.id))
         setEditPet(false)
-        setMyPetEdit('')
     }
 
     const editInputText = () => {
@@ -177,7 +173,7 @@ const ProfileModal = ({ setProf, user }) => {
 
                                 </div>
                                 <div className="profile__avatars-individual petpic" >
-                                    <Avatar size="2xl" name={pet.name} src={pet.image} />
+                                    <Avatar size="2xl" name={pet?.name} src={pet?.image} />
                                 </div>
 
                             </Flex>

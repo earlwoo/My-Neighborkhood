@@ -34,6 +34,8 @@ def user(id):
 @user_routes.route('/pet', methods=['PATCH'])
 @login_required
 def editPet():
-    pet = Pet.query.get(request.get_json()['pet_id'])
-    pet.bio = request.get_json()['bio']
+    print("!!!!!!!!!!!!!!!!!!! inside pet edit")
+    user = User.query.get(request.get_json()['user_id'])
+    user.pet.bio = request.get_json()['bio']
     db.session.commit()
+    return user.to_dict()

@@ -30,7 +30,8 @@ export const editMyBio = (bio, id) => async (dispatch) => {
 
   try{
     if(!res.ok) throw res
-    const data = res.json()
+    const data = await res.json()
+    console.log(data)
     dispatch(setUser(data))
     return data
   } catch(err) {
@@ -46,20 +47,35 @@ export const editMyPet = (bio, id) => async (dispatch) => {
     },
     body: JSON.stringify({
       bio,
-      pet_id: id
+      user_id: id
     })
   })
+
+  try {
+    if(!res.ok) throw res
+    const data = await res.json();
+
+    if (data.errors) {
+      return;
+    }
+
+    dispatch(setUser(data))
+    return data
+
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 export const authenticate = () => async (dispatch) => {
-    const response = await fetch('/api/auth/',{
+    const res = await fetch('/api/auth/',{
       headers: {
         'Content-Type': 'application/json'
       }
     });
     try {
-      if(!response.ok) throw response
-      const data = await response.json();
+      if(!res.ok) throw res
+      const data = await res.json();
 
       if (data.errors) {
         return;
