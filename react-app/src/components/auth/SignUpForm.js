@@ -89,7 +89,7 @@ const SignUpForm = ({ setShowSUModal }) => {
               ></input>
             </div>
             <div className="signup__input">
-            <select className="select-state" name="state" value={state} onChange={e => setState(e.target.value)}>
+            <select className="select-age" name="age" value={age} onChange={e => setAge(e.target.value)}>
               <option className="select-default" defaultValue >Age</option>
               <option value="1">1</option>
               <option value="2">2</option>
