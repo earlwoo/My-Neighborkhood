@@ -47,7 +47,7 @@
     height: 32px;
     border: none;
     color: white;
-    background-color: #4a154b;
+    background-color: #92ddb6;
     border-radius: 4px;
     font-weight: 900;
 }
@@ -56,23 +56,4 @@
     opacity: 0.9;
 }
 
-.goto__signup{
-    padding: 8px 30px;
-    font-size: 13px;
-    text-align: right;
 
-}
-
-.goto__signup p {
-    color: #616061;
-    padding-bottom: 6px;
-}
-
-.goto__signup h3 {
-    color: #1264a3;
-    font-weight: 500;
-}
-
-.goto__signup h3:hover {
-    text-decoration: underline;
-}
