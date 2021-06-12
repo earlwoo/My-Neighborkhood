@@ -45,6 +45,17 @@
     box-sizing: border-box;
 }
 
+.signup__input>.zip{
+    max-width: 25%;
+}
+.signup__input>.select-state {
+    height: 32px;
+    outline-width: 0;
+    border-radius: 4px;
+    border: 1px solid rgba(29, 28, 29, 0.384);
+    box-sizing: border-box;
+}
+
 .signup__button {
     display: flex;
     padding: 10px 30px;
@@ -55,7 +66,7 @@
     height: 32px;
     border: none;
     color: white;
-    background-color: #4a154b;
+    background-color: #92ddb6;
     border-radius: 4px;
     font-weight: 900;
 }
@@ -64,23 +75,14 @@
     opacity: 0.9;
 }
 
-.goto__login{
-    padding: 8px 30px;
-    font-size: 13px;
-    text-align: right;
-
+.select-state{
+    color: grey;
 }
 
-.goto__login p {
-    color: #616061;
-    padding-bottom: 6px;
+.select-default {
+    color: lightgrey;
 }
 
-.goto__login h3 {
-    color: #1264a3;
-    font-weight: 500;
-}
-
-.goto__login h3:hover {
-    text-decoration: underline;
+input::placeholder{
+    color: grey;
 }

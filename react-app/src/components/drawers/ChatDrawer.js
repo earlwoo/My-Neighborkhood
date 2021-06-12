@@ -49,10 +49,7 @@ const ChatDrawer = () => {
       >
         <DrawerOverlay />
         <DrawerContent>
-          <div>
-
-          <DrawerCloseButton />
-          </div>
+            <DrawerCloseButton />
           <DrawerHeader backgroundColor="#92ddb6">Chat With Your Neighborks</DrawerHeader>
 
           <DrawerBody className="chat_drawer">
