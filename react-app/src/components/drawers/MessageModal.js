@@ -4,39 +4,30 @@ import { format } from "date-fns";
 import { deleteMessageThunk, editMessageThunk, getMessages } from "../../store/messages"
 import {
     Modal,
-    Button,
     ModalOverlay,
     ModalContent,
     ModalHeader,
-    ModalFooter,
     ModalBody,
     ModalCloseButton,
     useDisclosure,
     Avatar,
-    Heading,
     Box,
     Divider,
     Text
 } from "@chakra-ui/react"
 import { useSelector, useDispatch } from 'react-redux';
 import { RiDeleteBack2Fill as DeleteIcon } from "react-icons/ri";
-import { AiFillEdit as EditIcon } from "react-icons/ai";
+import { AiFillEdit as EditIcon, AiOutlineEnter as SaveIcon } from "react-icons/ai";
 import { IoMdSend as SendButton } from "react-icons/io";
-import { AiOutlineEnter as SaveIcon } from "react-icons/ai";
 import { TiCancel as CancelIcon } from "react-icons/ti";
-import { authenticate } from '../../store/session';
 import { getChats } from '../../store/chats';
-import { useParams } from 'react-router-dom';
 import "./Messages.css"
 
 
 let socket;
 const MessageModal = ({ setShow, chat, user }) => {
-    const { chatId } = useParams()
-    const curruser = useSelector(state => state.session.user)
     const users = useSelector(state => state.users)
     const chats = useSelector(state => state.chats)
-    const messageStore = useSelector(state => state.messages)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([])
@@ -50,7 +41,7 @@ const MessageModal = ({ setShow, chat, user }) => {
     useEffect(() => {
         onOpen()
 
-    }, [chat])
+    }, [chat, onOpen])
 
     const chat1 = chats[chat.id]
     let otherUser = Object.values(chat1.users).find(el => el.id !== user.id)
@@ -70,7 +61,6 @@ const MessageModal = ({ setShow, chat, user }) => {
         socket = io();
         // listen for chat events
         socket.on(chat.id, (data) => {
-            console.log("!!! inside socet")
             // when we recieve a chat, add it into our messages array in state
             setMessages(messages => [...messages, data])
         })

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
-import { Text, Box, Flex, Image } from "@chakra-ui/react"
+import { Text, Flex, Image } from "@chakra-ui/react"
 import dog from "../main/dog.png"
 import "./SignUpForm.css"
 
@@ -27,11 +27,15 @@ const SignUpForm = ({ setShowSUModal }) => {
     e.preventDefault();
     if (password === confirmPassword) {
       const data = await dispatch(signUp(firstname, lastname, email, password, street, city, state, zip, age, name));
+      if(data.errors) {
+        setErrors(data.errors)
+      }
 
-      // if (data.errors) {
-      //   setErrors(data.errors)
-      // }
+    } else {
+      const valErrors = [...errors, "Passwords must match."]
+      setErrors(valErrors);
     }
+
   };
 
   useEffect(() => {
@@ -51,7 +55,7 @@ const SignUpForm = ({ setShowSUModal }) => {
         <form onSubmit={onSignUp}>
           <div className="errors">
             {errors?.map((error) => (
-              <div key={error}>・{error}</div>
+              <div key={error}>{error}</div>
             ))}
           </div>
           <div className="signup__input">
@@ -90,7 +94,7 @@ const SignUpForm = ({ setShowSUModal }) => {
             </div>
             <div className="signup__input">
             <select className="select-age" name="age" value={age} onChange={e => setAge(e.target.value)}>
-              <option className="select-default" defaultValue >Age</option>
+              <option className="select-default" value="" defaultValue >Age</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -154,7 +158,7 @@ const SignUpForm = ({ setShowSUModal }) => {
               autoComplete="off"
             ></input>
             <select className="select-state" name="state" value={state} onChange={e => setState(e.target.value)}>
-              <option className="select-default" defaultValue>State</option>
+              <option className="select-default" value="" defaultValue>State</option>
               <option value="AL">AL</option>
               <option value="AK">AK</option>
               <option value="AZ">AZ</option>
@@ -209,7 +213,9 @@ const SignUpForm = ({ setShowSUModal }) => {
             </select>
             <input
               className="zip"
-              type="text"
+              type="number"
+              max="99999"
+              min="10000"
               name="zip"
               placeholder="Zip"
               onChange={e => setZip(e.target.value)}
@@ -250,14 +256,3 @@ const SignUpForm = ({ setShowSUModal }) => {
 };
 
 export default SignUpForm;
-
-
-{/* <input
-            type="text"
-            name="state"
-            placeholder="State"
-            onChange={e => setState(e.target.value)}
-            value={state}
-            required
-            autoComplete="off"
-          ></input> */}

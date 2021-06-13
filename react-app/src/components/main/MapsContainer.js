@@ -1,10 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api'
 import { useSelector } from 'react-redux';
 import MapsUserInfo from './MapsUserInfo'
 import dog from "./dog.png"
-import { Portal  } from '@chakra-ui/portal';
-import { Text, Flex } from "@chakra-ui/react"
+
 
 const mapStyles = {
     height: "88.5vh",
@@ -14,13 +13,12 @@ const mapStyles = {
 const MapContainer = () => {
     const curruser = useSelector(state => state.session.user)
     const users = useSelector(state => state.users)
-    // const chats = useSelector(state => state.chats)
     const [selected, setSelected] = useState({});
-    // const ref = useRef()
+
 
     const { isLoaded, loadError } = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API // ,
-        // ...otherOptions
+
     })
 
     const renderMap = () => {
@@ -38,11 +36,12 @@ const MapContainer = () => {
                         if (curruser.id !== user.id) {
                             return <Marker icon={dog} key={user.id} position={user.location} onClick={() => setSelected(user)} />
                         }
+
+                        return null;
                     })}
                     {selected.location && (
                         <InfoWindow
                             position={selected.location}
-                            // clickable={true}
                             onCloseClick={() => setSelected({})}
                         >
                             <MapsUserInfo selected={selected} />

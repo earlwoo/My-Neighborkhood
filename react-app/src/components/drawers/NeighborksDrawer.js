@@ -1,7 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button, Divider, Flex, IconButton, Input, useDisclosure} from "@chakra-ui/react"
-import {
-  Drawer,
+import { Button, Divider, Flex, IconButton, useDisclosure, Drawer,
   Avatar,
   AvatarGroup,
   DrawerBody,
@@ -9,13 +7,11 @@ import {
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton, Box
-} from "@chakra-ui/react"
+  DrawerCloseButton, Box} from "@chakra-ui/react"
 import { useSelector } from 'react-redux';
 import ProfileModal from './ProfileModal';
 import { FaUsers } from "react-icons/fa"
 import "./NeighborksDrawer.css"
-import { PhoneIcon, AddIcon, WarningIcon, ChatIcon, HamburgerIcon, ExternalLinkIcon, RepeatClockIcon, RepeatIcon, EditIcon, CloseIcon } from '@chakra-ui/icons'
 
 const NeighborksDrawer = () => {
   const loggedUser = useSelector(state=> state.session.user)
@@ -66,7 +62,9 @@ const NeighborksDrawer = () => {
                     <Divider ></Divider>
                   </Flex>
                 )
-              }})}
+              }
+              return null;
+            })}
             {prof.id && <ProfileModal setProf={setProf} user={prof}></ProfileModal>}
           </DrawerBody>
 

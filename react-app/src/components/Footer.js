@@ -1,5 +1,4 @@
 import React from 'react'
-import { Container } from "@chakra-ui/react"
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import "./Footer.css"
 import dog from "./main/dog.png"
@@ -20,7 +19,7 @@ const Footer = () => {
                     <FaLinkedin id="github" />
                 </a>
             </div>
-            <img className="bork" src={dog} ></img>
+            <img className="bork" alt="dog-icon" src={dog} ></img>
             <div className="title">© 2021 My Neighborkhood. No rights reserved.</div>
         </div>
     )

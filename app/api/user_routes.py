@@ -11,15 +11,15 @@ def users():
     users = User.query.all()
     return {"users": [user.to_dict() for user in users]}
 
+
 @user_routes.route('/<int:id>', methods=["PATCH"])
 def editUser(id):
-    print("inside")
     user = User.query.get(id)
-    print("!!!!!!", user)
     user.bio = request.get_json()['bio']
-    print("!!!!!!", user)
+
     db.session.commit()
     return user.to_dict()
+
 
 @user_routes.route('/<int:id>')
 @login_required
@@ -34,7 +34,7 @@ def user(id):
 @user_routes.route('/pet', methods=['PATCH'])
 @login_required
 def editPet():
-    print("!!!!!!!!!!!!!!!!!!! inside pet edit")
+
     user = User.query.get(request.get_json()['user_id'])
     user.pet.bio = request.get_json()['bio']
     db.session.commit()

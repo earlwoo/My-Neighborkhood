@@ -63,7 +63,7 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print(form.data)
+
         user = User(
             firstname=form.data['firstname'],
             lastname=form.data['firstname'],
@@ -92,6 +92,8 @@ def sign_up():
 
         login_user(user)
         return new_user_dict
+
+    
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
