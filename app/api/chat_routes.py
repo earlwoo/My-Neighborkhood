@@ -29,7 +29,6 @@ def post_chat():
     """
     Creates a new chat (public or private or dm)
     """
-    print("!!!!!!!!!!!!!!",   request.get_json())
     chat_name = request.get_json()['chat']['name']
     selected_id = request.get_json()['chat']['selected_id']
 

@@ -34,18 +34,3 @@ export default function users(state = {}, action) {
             return state;
     }
 }
-
-
-// for (let user in users) {
-
-//     const res = await Geocode.fromAddress(`${users[user].address.street} ${users[user].address.city} ${users[user].address.state} ${users[user].address.zip}`)
-//     try{
-//         // if(!res.ok) throw res
-
-//         const { lat, lng } = await res.results[0].geometry.location;
-
-//         users[user].location = {lat, lng}
-//     }catch(err) {
-//         console.log(err)
-//     }
-// }

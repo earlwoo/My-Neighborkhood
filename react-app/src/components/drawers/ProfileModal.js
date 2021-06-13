@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Modal,
-    Box,
+
     Button,
-    Image,
     ModalOverlay,
     ModalContent,
     ModalHeader,
@@ -15,13 +14,11 @@ import {
     Avatar,
     Text,
     Flex,
-    Input,
     Textarea
 } from "@chakra-ui/react"
 import { useSelector, useDispatch } from 'react-redux';
 import "./Profile.css"
-import { AiFillEdit as EditIcon } from "react-icons/ai";
-import { AiOutlineEnter as SaveIcon } from "react-icons/ai";
+import { AiFillEdit as EditIcon, AiOutlineEnter as SaveIcon } from "react-icons/ai";
 import { TiCancel as CancelIcon } from "react-icons/ti";
 import { editMyBio, editMyPet } from '../../store/session';
 
@@ -40,7 +37,7 @@ const ProfileModal = ({ setProf, user }) => {
     useEffect(() => {
         onOpen()
         if (user.id === loggedUser.id) { setmyProf(true) }
-    }, [user])
+    }, [user, loggedUser.id, onOpen])
 
     const userEdit = () => {
         return (
@@ -138,7 +135,7 @@ const ProfileModal = ({ setProf, user }) => {
                         <div className="profile__avatars-container">
                             <Flex alignItems="center" minW="md" borderWidth="1px" borderRadius="lg" overflow="hidden">
                                 <div className="profile__avatars-individual userpic" >
-                                    <Avatar size="2xl" name={user.firstname} src={user.avatar} />
+                                    <Avatar size="2xl" name={`${user.firstname} ${user.lastname}`} src={user.avatar} />
                                 </div>
                                 <div className="profile__bio-container" >
                                     <ModalHeader textAlign="center" fontSize="20" fontWeight="bolder"  minHeight="100%" minWidth="100%" borderRadius="lg" >{user.firstname} {user.lastname}</ModalHeader>

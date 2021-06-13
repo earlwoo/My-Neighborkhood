@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import LoginForm from './LoginForm';
 import { Button } from "@chakra-ui/react"
@@ -7,10 +7,6 @@ import { Button } from "@chakra-ui/react"
 
 function LoginFormModal() {
   const [showLIModal, setShowLIModal] = useState(false);
-
-  // useEffect(()=>{
-
-  // }, [])
 
   return (
     <>

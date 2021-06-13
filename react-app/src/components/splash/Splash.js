@@ -1,7 +1,7 @@
 import React from "react"
 import { useSelector } from "react-redux"
 import { useHistory } from "react-router"
-import { Image, Container, Flex, Box, Text, Divider } from "@chakra-ui/react"
+import { Image, Flex, Text, Divider } from "@chakra-ui/react"
 import wallpaper from "./lookAlikePinkGran.jpg"
 import wallpaper1 from "./lookAlikeYellow.jpg"
 import wallpaper2 from "./lookAlikeBlue.jpg"

@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { Box, Avatar, AvatarGroup, Divider, Button, IconButton, EmailIcon, Portal, Flex, Text } from "@chakra-ui/react"
+import { Box, Avatar, AvatarGroup, Divider, Portal, Flex, Text } from "@chakra-ui/react"
 import { ChatIcon } from "@chakra-ui/icons"
 import MessageModal from '../drawers/MessageModal';
-import { createChat, getChats } from '../../store/chats'
+import { createChat } from '../../store/chats'
 
 
 
@@ -15,7 +15,7 @@ const MapsUserInfo = ({ selected }) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        console.log("!!!! mapuserinfo selected change", selected)
+    
     }, [selected])
 
     let findChat = Object.values(chatStore).find(chat => {
@@ -23,9 +23,6 @@ const MapsUserInfo = ({ selected }) => {
     })
 
     // set current chat to state
-    console.log("!!!", selected)
-    console.log("~~~~~ ourchat", findChat)
-
 
     const handleCreate = async (e) => {
         e.preventDefault()
@@ -52,9 +49,6 @@ const MapsUserInfo = ({ selected }) => {
                         <Avatar size="lg" name={selected.pet.name} src={selected.pet.image} />
                     </AvatarGroup>
                     <Text fontSize="15" fontWeight="semibold">{selected.firstname} & {selected.pet.name}</Text>
-                    {/* <Text fontSize="12" fontWeight="semibold">&</Text>
-                    <Text alignSelf="flex-end" fontSize="14" fontWeight="semibold">{selected.pet.name}</Text> */}
-
                 </Flex>
                 <Divider />
                 <Flex flexDirection="column" alignItems="center" paddingTop="2">
@@ -69,7 +63,6 @@ const MapsUserInfo = ({ selected }) => {
                     padding="1"
                     borderRadius="4"
                     textAlign="right"
-
                     >
                         <ChatIcon />
                             Chat
@@ -83,7 +76,6 @@ const MapsUserInfo = ({ selected }) => {
                             borderRadius="4"
                             textAlign="right"
                             >
-
                             <ChatIcon />
                             Start Chat
                             </Box>

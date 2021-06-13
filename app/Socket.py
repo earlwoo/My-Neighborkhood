@@ -22,8 +22,6 @@ socketio = SocketIO(cors_allowed_origins=origins)
 
 @socketio.on("chat")
 def handle_chat(data):
-    print(data["chat_id"])
-    print('HIT THE ROUTE', data)
     new_message = Message(
         user_id=data['user_id'],
         chat_id=data['chat_id'],

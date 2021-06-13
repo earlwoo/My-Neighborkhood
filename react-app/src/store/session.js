@@ -31,7 +31,6 @@ export const editMyBio = (bio, id) => async (dispatch) => {
   try{
     if(!res.ok) throw res
     const data = await res.json()
-    console.log(data)
     dispatch(setUser(data))
     return data
   } catch(err) {
@@ -108,8 +107,6 @@ export const authenticate = () => async (dispatch) => {
     }
 
     dispatch(setUser(data))
-    // if (data.location) {dispatch(setUser(data))}
-
     return data;
 
   }
@@ -136,9 +133,6 @@ export const authenticate = () => async (dispatch) => {
         const { lat, lng } = await res.results[0].geometry.location;
         location = {lat, lng}
 
-    console.log("!!!!", location)
-
-
     const response = await fetch("/api/auth/signup", {
       method: "POST",
       headers: {
@@ -149,15 +143,15 @@ export const authenticate = () => async (dispatch) => {
         lastname,
         email,
         password,
-        street, city, state, zip,
+        street, city, state, zip: String(zip),
         location,
         age,
         name
       }),
     });
+    if(!response.ok) throw response;
 
     try{
-      if(!response.ok) throw response;
       const data = await response.json();
 
       if (data.errors) {

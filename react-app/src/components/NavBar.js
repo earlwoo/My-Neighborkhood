@@ -1,34 +1,19 @@
 import React from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { getUsers } from "../store/users"
 import { login, logout } from "../store/session"
-import LogoutButton from './auth/LogoutButton';
 import LoginFormModal from './auth/LoginFormModal'
 import SignUpFormModal from './auth/SignUpFormModal'
 import "./NavBar.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Container, Flex, IconButton, Text } from "@chakra-ui/react"
+import { Button, Container, Flex, IconButton, Text, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react"
 import ChatDrawer from "./drawers/ChatDrawer"
 import NeighborksDrawer from "./drawers/NeighborksDrawer"
 import ProfileModal from './drawers/ProfileModal';
 import { FaUserAlt } from "react-icons/fa";
 import { getChats } from "../store/chats"
-import { PhoneIcon, AddIcon, WarningIcon, ChatIcon, HamburgerIcon, ExternalLinkIcon, RepeatClockIcon, RepeatIcon, EditIcon, CloseIcon } from '@chakra-ui/icons'
+import { HamburgerIcon, EditIcon, CloseIcon } from '@chakra-ui/icons'
 import { GiDogHouse } from "react-icons/gi";
-import { BsChatFill } from "react-icons/bs"
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuIcon,
-  MenuCommand,
-  MenuDivider,
-  ChevronDownIcon
-} from "@chakra-ui/react"
 import { useState } from 'react';
 
 const NavBar = () => {

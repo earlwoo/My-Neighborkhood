@@ -2,17 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
-import { Text, Box, Flex, Image } from "@chakra-ui/react"
+import { Text, Flex, Image } from "@chakra-ui/react"
 import dog from "../main/dog.png"
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Input
-} from "@chakra-ui/react"
 import "./LoginForm.css"
-import bulls from "./bullsPlay.jpg"
+
 
 const LoginForm = ({ setShowLIModal }) => {
   const [errors, setErrors] = useState([]);

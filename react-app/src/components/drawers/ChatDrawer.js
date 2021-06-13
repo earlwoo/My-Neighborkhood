@@ -1,21 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { Avatar, Button, Divider, Input, space, useDisclosure, IconButton} from "@chakra-ui/react"
-import {
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  Flex,
-  Spacer,
-  Box
-} from "@chakra-ui/react"
+import { Avatar, Button, Divider, useDisclosure, IconButton, Drawer,DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Flex, Box, Portal} from "@chakra-ui/react"
 import { useSelector } from 'react-redux';
 import MessageModal from "./MessageModal"
-import { Portal } from "@chakra-ui/react"
-import { NavLink } from 'react-router-dom';
 import {BsChatFill} from "react-icons/bs"
 import "./ChatDrawer.css"
 
@@ -34,7 +20,6 @@ const ChatDrawer = () => {
             icon={<BsChatFill fontSize="35"/>}
             variant="ghost" onClick={onOpen}
             _hover={{ bg: "#B4F8C8" }}
-            onClick={onOpen}
             padding="1"
             >
       </IconButton>
