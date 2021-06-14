@@ -22,21 +22,23 @@
   * Dog Walking rating
   
 ## TECHNOLOGIES USED
-  * Javascript
-  * Express
-  * Sequelize
+  * Python
+  * Flask
+  * SQLAlchemy
+  * Docker
   * PSQL Database
   * CSS
   * JSX
   * React
   * Redux
+  * Heroku
 
 ## ENVIORNMENT DEPENDENCIES/PACKAGES
   * Google Maps React
   * Socket-IO
   * React Geocode
   * Chakra UI
-  * Heroku
+  * wtforms
   * React Icons
   * Font Awesome
   * Faker
@@ -100,8 +102,6 @@ Python objects are converted to readable info when sent from the back-end to fro
      } 
 ```
 Websocket on the frontend: The `useEffect()` enables a new `chat` socket to be opened. We used the chat prop as an identifier for when we interact with the backend of the `chat` socket. When the selected chat changes, current socket `chat` socket is closed, and then reopens with the next chat passed in as a prop. Upon submission of a new message, we emit the message to the backend socket and sends the data to create and store the message into the database.
-
-`react-app/src/components/ChannelsPage/Chatbox/Chatbox.js`
 ```js
 useEffect(() => {       
         socket = io();        
@@ -129,6 +129,7 @@ const sendChat = (e) => {
         setChatInput("")
     }
 ```
+
 * Websocket on the backend: There's one socket that receives all `chat` events. After adding the emitted message to the database, we `emit` back to the frontend with additional data such as `chat_id`. That `chat_id` will be used to determine which frontend channel's `chat` socket we should broadcast the new message to. The data sent from the backend will now be received as the variable `chat` in the `useEffect()`.
 
 `app/socketIO.py`
@@ -150,7 +151,6 @@ def handle_chat(data):
     data['id'] = ourMsg.id
     emit(data["chat_id"], data, broadcast=True)
 ```
-
 
 ## TABLE USERS
   * id (integer, primary key, not null)
