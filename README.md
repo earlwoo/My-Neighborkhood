@@ -31,6 +31,16 @@
   * React
   * Redux
 
+## ENVIORNMENT DEPENDENCIES/PACKAGES
+  * Google Maps React
+  * Socket-IO
+  * React Geocode
+  * Chakra UI
+  * Heroku
+  * React Icons
+  * Font Awesome
+  * Faker
+
   
 ## DATABASE SCHEMA
 
@@ -212,13 +222,3 @@ def handle_chat(data):
     * Deciding which components have access to which slice of state and how to make the data accessible to other components by either props, or subscribing to the store
     * The re-rendering nature of React, and understanding how those re-renders affect the entire components structure, while also being mindful of what causes the re-render
     
-
-## ENVIORNMENT DEPENDENCIES/PACKAGES
-  * Google Maps React
-  * Socket-IO
-  * React Geocode
-  * Chakra UI
-  * Heroku
-  * React Icons
-  * Font Awesome
-  * Faker
