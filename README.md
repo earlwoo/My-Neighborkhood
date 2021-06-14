@@ -72,7 +72,7 @@ To prevent multip sockets for chat rooms, a user is passed into a state set by u
    </Flex>
 ```
 
-Python objects are converted to readable info when sent from the back-end to front-end using a to_dict method for applicable class instances.  Along with properties various properties through table relations.
+Python objects are converted to readable info when sent from the back-end to front-end using a to_dict method for applicable class instances.  Along with various properties through table relations.
 ```javascript
     pet = db.relationship(
         "Pet", uselist=False,
