@@ -19,7 +19,12 @@
 ## BONUS / STRETCH GOALS
   * Search
   * Events
-  * Dog Walking rating
+  * Dog specific map markers
+      * doggy day care
+      * pet sitters
+      * parks
+      * events
+  * Adoption listings by neighborhoods
   
 ## TECHNOLOGIES USED
   * Python
