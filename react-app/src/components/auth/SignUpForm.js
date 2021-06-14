@@ -93,7 +93,7 @@ const SignUpForm = ({ setShowSUModal }) => {
               ></input>
             </div>
             <div className="signup__input">
-            <select className="select-age" name="age" value={age} onChange={e => setAge(e.target.value)}>
+            <select className="select-age" required name="age" value={age} onChange={e => setAge(e.target.value)}>
               <option className="select-default" value="" defaultValue >Age</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -157,7 +157,7 @@ const SignUpForm = ({ setShowSUModal }) => {
               required
               autoComplete="off"
             ></input>
-            <select className="select-state" name="state" value={state} onChange={e => setState(e.target.value)}>
+            <select className="select-state" required name="state" value={state} onChange={e => setState(e.target.value)}>
               <option className="select-default" value="" defaultValue>State</option>
               <option value="AL">AL</option>
               <option value="AK">AK</option>

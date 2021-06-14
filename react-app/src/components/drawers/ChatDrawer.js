@@ -40,10 +40,11 @@ const ChatDrawer = () => {
           <DrawerBody className="chat_drawer">
             <Flex flexDirection="column" alignItems="flex-start">
               {Object.values(chats).map(chat => (
-                <Box as="button" onClick={() => setShow(chat)}
+                <Box
+                as="button"
+                onClick={() => setShow(chat)}
                 key={chat.id}
-                fontWeight="semibold"
-                letterSpacing="wide"
+                fontWeight="semibold" letterSpacing="wide"
                 fontSize="xs" marginBottom="10px" padding="10px" >
                   <Avatar src={Object.values(chat.users)[1].avatar}></Avatar>
                   <Box fontSize="14" paddingLeft="5" fontWeight="semibold" as="button" >{Object.values(chat.users)[1].name}
