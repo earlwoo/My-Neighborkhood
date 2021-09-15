@@ -55,7 +55,7 @@
 
 ## Technical Showcase
 
-To prevent multip sockets for chat rooms, a user is passed into a state set by useState to open a chat socket only when a user is selected. 
+To prevent multiple sockets for chat rooms, a user is passed into a state set by useState to open a chat socket only when a user is selected. 
 ```javascript
    <Flex flexDirection="column" alignItems="flex-start">
      {Object.values(chats).map(chat => (
